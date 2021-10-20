@@ -15,11 +15,10 @@ namespace Dominio
     {
         [Required, Key]
         public int Id { get; set; }
-        [Required, Display(Name = "Id Socio"), ReadOnly(true), Index("IdSocioMes", IsUnique = true)]
+        [Required, Display(Name = "Id Socio"), ReadOnly(true)]
         public int IdSocio { get; set; }
         [Required, Range(1, 12), ReadOnly(true), HiddenInput(DisplayValue = false), ForeignKey("IdSocio")]
         public Socio Socio { get; set; }
-        [Required, ReadOnly(true), Index("IdSocioMes", IsUnique = true)]
         public int Mes { get; set; }
         [Required, Display(Name = "Año"), ReadOnly(true)]
         public int Anio { get; set; }

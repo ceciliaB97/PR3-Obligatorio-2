@@ -14,13 +14,13 @@ namespace Dominio
     {
         [Required, Key]
         public int Id { get; set; }
-        [Required, Index("Actividad_IdSocio_IdMembresia_Hora", IsUnique = true)]
+        [Required]
         public int IdMembresia { get; set; }
-        [Required, Index("Actividad_IdSocio_IdMembresia_Hora", IsUnique = true)]
+        [Required]
         public int IdSocio { get { return IdSocio; } set { IdSocio = Socio.Id; } }
         [ForeignKey("IdSocio")]
         public Socio Socio { get; set; }
-        [Required, Index("Actividad_IdSocio_IdMembresia_Hora", IsUnique = true)]
+        [Required]
         public DateTime FechaHora { get; set; }
         [Required, Range(20, 500)]
         public int Cupos { get; set; }

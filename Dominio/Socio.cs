@@ -13,7 +13,7 @@ namespace Dominio
     {
         [Column("Id"), Key]
         public int Id { get; set; }
-        [Required, Range(7, 9, ErrorMessage = "Cedula debe tener entre 7 y 9 digitos"), Index("Socio_Cedula",IsUnique = true)]
+        [Required, Range(7, 9, ErrorMessage = "Cedula debe tener entre 7 y 9 digitos"), Index(IsUnique = true)]
         public int Cedula { get; set; }
         [Required, StringLength(50, MinimumLength = 6), Display(Name = "Nombre Completo")]
         public string NombreApellido { get; set; }
