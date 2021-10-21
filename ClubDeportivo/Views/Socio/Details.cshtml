@@ -1,0 +1,121 @@
+﻿@model Dominio.Socio
+@using Dominio
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Socio</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.IdSocio)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.IdSocio)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.NombreApellido)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.NombreApellido)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Cedula)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Cedula)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.FechaNacimiento)
+        </dt>
+
+        <dd>
+            @Model.FechaNacimiento.ToShortDateString()
+            <!--@@Html.DisplayNameFor(model => model.FechaNacimiento) -->
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.FechaIngreso)
+        </dt>
+
+        <dd>
+            @Model.FechaIngreso.ToShortDateString()
+            <!--@@Html.DisplayNameFor(model => model.FechaIngreso) -->
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Activo)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Activo)
+        </dd>
+
+
+    </dl>
+
+    <div>
+        @if (Model.ValidarPagoMembresia())
+        {
+            <h4>Actividades del Dia</h4>
+            <select id="dropDownActividadesDia" onchange="actualizarLinkIngresoAct()">
+                <option>Seleccionar actividad</option>
+                @foreach (Dominio.ActividadHora actividad in ViewBag.ActividadesDelDia)
+                {
+                    <option value="@actividad.Id|@actividad.Hora">@actividad.Id | @actividad.Nombre | @actividad.Hora</option>
+                }
+
+            </select>
+            <br />
+
+            <a id="linkIngActividad" href="~/Socio/IngresoSocioActividad?idSocio=@Model.IdSocio&idActividad=-999&hora=-888" style="display:none">Ingresar Actividad</a>
+
+            @*@Html.ActionLink("Ingresar Actividad", "IngresoSocioActividad", new
+               {
+                   idSocio = Model.IdSocio,
+                   idActividad = -999
+               }, new { htmlAttributes = new { id = "linkIngActividad", @style = "display:none" } });*@
+
+        }
+    </div>
+</div>
+<br />
+<br />
+<p>
+    @Html.ActionLink("Back to List", "Index") |
+    @if (!Model.ValidarPagoMembresia())
+    {
+        @Html.ActionLink("Crear Cuponera", "CreateCuponera", new { cedula = Model.Cedula }) @:|
+        @Html.ActionLink("Crear Pase Libre", "CreatePaseLibre", new { cedula = Model.Cedula }) @:|
+
+    }
+
+    @Html.ActionLink("Listar Cuponeras", "ListarMCuponeraPorSocioId", new { id = Model.IdSocio }) |
+    @Html.ActionLink("Listar Pases Libres", "ListarPaseLibrePorSocioId", new { id = Model.IdSocio })
+
+</p>
+
+<script>
+    function actualizarLinkIngresoAct() {
+        var dropdown = document.getElementById('dropDownActividadesDia');
+        var link = document.getElementById('linkIngActividad');
+        link.style.display = "inline";
+        var _href = link.href;
+        var vals = dropdown.value.split('|');
+
+        var id = vals[0];
+        var hora = vals[1];
+
+        link.href = _href.replace("-999", id).replace("-888",hora);
+    }
+</script>

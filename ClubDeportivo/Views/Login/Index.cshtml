@@ -1,0 +1,26 @@
+﻿@using Dominio
+@model Usuario
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Login</h2>
+
+@if (ViewBag.Error != null)
+{
+    <p>@ViewBag.Error</p>
+}
+
+@if (ViewBag.Mensaje != null)
+{
+    <p>@ViewBag.Mensaje</p>
+}
+
+<form action="~/Login/InicioSesion" method="post">
+
+    <label for="Mail">Email</label><input id="Mail" type="email" name="Mail" /><br />
+
+    <label for="txtPassword">Contraseña</label><input id="txtPassword" type="password" name="Password" /><br />
+    <input value="Iniciar Sesion" type="submit" />
+
+</form>

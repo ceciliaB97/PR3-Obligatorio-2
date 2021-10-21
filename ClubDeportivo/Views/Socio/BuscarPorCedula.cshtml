@@ -1,0 +1,111 @@
+﻿@model Dominio.Socio
+
+@{
+    ViewBag.Title = "BuscarPorCedula";
+}
+
+<h2>Buscar Por Cedula</h2>
+
+<div>
+    <h4>Socio</h4>
+    <hr />
+    <form action="~/Socio/BuscarPorCedula" method="post">
+        <dl class="dl-horizontal">
+
+
+            <dt>
+                @Html.DisplayNameFor(model => model.Cedula)
+            </dt>
+
+            <dd>
+                <input type="number" name="cedula" />
+            </dd>
+
+
+        </dl>
+
+        @using (Html.BeginForm())
+        {
+            @Html.AntiForgeryToken()
+
+            <div class="form-actions no-color">
+                <input type="submit" value="Detalle" />
+            </div>
+        }
+    </form>
+</div>
+
+@if (Model != null)
+{
+    <h2>Detalle</h2>
+
+    <div>
+        <h4>Socio</h4>
+        <hr />
+        <form action="~/Socio/DeleteDetalleInactivar" method="post">
+            <dl class="dl-horizontal">
+                <dt>
+                    @Html.DisplayNameFor(model => model.IdSocio)
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.IdSocio)
+                </dd>
+
+                <dt>
+                    @Html.DisplayNameFor(model => model.NombreApellido)
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.NombreApellido)
+                </dd>
+
+                <dt>
+                    @Html.DisplayNameFor(model => model.Cedula)
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.Cedula)
+                </dd>
+
+                <dt>
+                    @Html.DisplayNameFor(model => model.FechaNacimiento)
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.FechaNacimiento)
+                </dd>
+
+                <dt>
+                    @Html.DisplayNameFor(model => model.FechaIngreso)
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.FechaIngreso)
+                </dd>
+
+                <dt>
+                    @Html.DisplayNameFor(model => model.Activo)
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.Activo)
+                </dd>
+                <dd>
+                    @if (!Model.ValidarPagoMembresia())
+                    {
+                        @Html.ActionLink("Crear Cuponera", "CreateCuponera", new { cedula = Model.Cedula }) @:|
+                        @Html.ActionLink("Crear Pase Libre", "CreatePaseLibre", new { cedula = Model.Cedula }) @:|
+
+                    }
+                    @Html.ActionLink("Listar Cuponeras", "ListarMCuponeraPorSocioId", new { id = Model.IdSocio }) |
+                    @Html.ActionLink("Listar Pases Libres", "ListarPaseLibrePorSocioId", new { id = Model.IdSocio })
+                </dd>
+            </dl>
+        </form>
+        @*@if(Model.ValidarPagoMembresia())*@
+
+        @Html.ActionLink("Mostrar Ingresos Socio", "MostrarIngresosSocio", new { cedula = Model.Cedula})
+
+    </div>
+}

@@ -1,0 +1,17 @@
+Id|Nombre|Minedad|Maxedad|Active|Cupos
+3|Natacion|3|80|True|600
+4|Pesas|12|40|True|300
+5|Crossfit|15|77|True|100
+7|Spinning|18|80|True|100
+8|Karate|12|55|True|350
+9|Yoga|15|80|True|250
+10|Pilas|15|55|True|360
+11|Futbol|5|50|True|199
+12|Handball|15|45|True|139
+13|Voleyball|18|50|True|160
+14|Basketball|18|50|True|175
+15|Gim.Artistica|10|24|True|95
+16|Futbol Kids|5|16|True|200
+17|Handball Kids|8|16|True|140
+18|Voleyball Kids|8|16|True|160
+19|Basketball Kids|8|16|True|175

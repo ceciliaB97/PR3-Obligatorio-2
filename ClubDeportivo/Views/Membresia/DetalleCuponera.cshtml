@@ -1,0 +1,66 @@
+﻿@model Dominio.Cuponera
+
+@{
+    ViewBag.Title = "DetalleCuponera";
+}
+
+<h2>DetalleCuponera</h2>
+
+<div>
+    <h4>Cuponera</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Nombre)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Nombre)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Descipcion)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Descipcion)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.FechaPago)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.FechaPago)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Active)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Active)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.TipoMembresia)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.TipoMembresia)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.CantActividades)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CantActividades)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

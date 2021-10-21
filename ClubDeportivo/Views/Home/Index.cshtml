@@ -1,0 +1,33 @@
+﻿@{
+    ViewBag.Title = "Home Page";
+}
+
+@if (Session["Logueado"] != null)
+{
+    <p>@Session["LogueadoMail"]</p>
+}
+
+<div class="jumbotron">
+    <h1>Gestion Club Solis</h1>
+    <p class="lead">
+        Actualmente en el club se realizan las siguientes actividades: gimnasia, yoga, básquetbol, fútbol, voleyball, taekwondo,
+        salsa, musculación, expresión corporal, natacion.
+    </p>
+
+    <!--<p><a href="https://asp.net" class="btn btn-primary btn-lg">Learn more &raquo;</a></p>
+    -->
+</div>
+
+<div class="row">
+    <div class="col-md-12">
+        <h2>Novedades</h2>
+        <p>
+            El Club Solís sufrió inconvenientes en su infraestructura por lo que
+            las actividades de piscina se encuentran inhabilitadas, no obstante el
+            club ha re-organizado sus actividades para continuar brindándoles el mejor servicio.
+            Disculpe las molestias
+        </p>
+        <!--<p><a class="btn btn-default" href="https://go.microsoft.com/fwlink/?LinkId=301865">Learn more &raquo;</a></p>
+        -->
+    </div>
+</div>

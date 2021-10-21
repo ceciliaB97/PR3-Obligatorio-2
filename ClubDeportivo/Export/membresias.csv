@@ -1,0 +1,15 @@
+Id|Nombre|Description|Fechapago|Active|CantActividades|Tipomembresia
+45|cuponera seria1|cuponera seria11|10/10/2021 0:00:00|True|16|cuponera
+46|CUPONERA1|CUPONERA1 ejercicio|10/10/2021 0:00:00|True|16|cuponera
+47|cuponera octubre|para empezar a ejercitar|11/10/2021 0:00:00|True|15|cuponera
+48|cuponera octubre|para seguir con ejercicio potente|11/10/2021 0:00:00|True|20|cuponera
+49|cuponera octubre|seguir ejercicio a nivel medio||True|18|cuponera
+50|cuponera octubre|para hacer ejercicio a nivel maximo|11/10/2021 0:00:00|True|26|cuponera
+51|cuponera octubre|actividades livianas para recuperacion|11/10/2021 0:00:00|True|16|cuponera
+52|pase libre|pase libre para musculacion varias|11/10/2021 0:00:00|True|0|paselibre
+53|pase libre octubre|para seguir con el ejercicio medio|11/10/2021 0:00:00|True|0|paselibre
+54|pase libre octubre|para seguir con el ejercicio fuerte|11/10/2021 0:00:00|True|0|paselibre
+55|pase libre octubre|para hacer recuperacion muscular|11/10/2021 0:00:00|True|0|paselibre
+56|pase libre octubre|pase libre maximo|11/10/2021 0:00:00|True|0|paselibre
+57|pase libre octube|comenzar con ejercicio liviano ||True|0|paselibre
+58|pase libre test bla|pase libre test bla|11/10/2021 0:00:00|True|0|paselibre

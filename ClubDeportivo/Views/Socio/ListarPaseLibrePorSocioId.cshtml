@@ -1,0 +1,60 @@
+﻿@model IEnumerable<Dominio.PaseLibre>
+
+@{
+    ViewBag.Title = "ListarPaseLibrePorSocioId";
+}
+
+<h2>ListarPaseLibrePorSocioId</h2>
+
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Nombre)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Descipcion)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.FechaPago)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Active)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.TipoMembresia)
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Nombre)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Descipcion)
+            </td>
+            <td>
+                @if (item.FechaPago != null)
+                {
+                    @Html.DisplayFor(modelItem => item.FechaPago)
+                }
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Active)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.TipoMembresia)
+            </td>
+            <td>
+                @if (item.FechaPago == null)
+                {
+                    @Html.ActionLink("PAGAR", "RealizarPagoLibre", new { id = item.Id })
+                }
+
+            </td>
+        </tr>
+    }
+
+</table>

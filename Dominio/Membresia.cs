@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.AspNetCore.Mvc;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
@@ -6,7 +7,6 @@ using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using System.Web.Mvc;
 
 namespace Dominio
 {
@@ -23,8 +23,12 @@ namespace Dominio
         [Required, Display(Name = "Año"), ReadOnly(true)]
         public int Anio { get; set; }
         [Required, Display(Name = "Fecha de pago"), ReadOnly(true)]
-        public DateTime FechaPago { get; set; }
+        public DateTime? FechaPago { get; set; }
 
+
+        [Required]
+        public string TipoMembresia { get; set; }
+        
         public decimal Precio { get; set; }
         [InverseProperty("Membresia")]
         public List<Actividad> Actividades { get; set; }
@@ -37,7 +41,7 @@ namespace Dominio
 
             set
             {
-                if (FechaPago.Month != DateTime.Now.Month)
+                if (FechaPago.HasValue && FechaPago.Value.Month != DateTime.Now.Month)
                 {
                     ActivaEsteMes = false;
                 }
@@ -61,7 +65,10 @@ namespace Dominio
             FechaPago = fechaPago;
             Actividades = new List<Actividad>();
         }
-        public abstract decimal CalcularPrecio();
+       // public abstract decimal CalcularPrecio();
+
+        public abstract double calcularPagoFinal(Configuration config, int antiguedadSocio = 0);
+
 
     }
 }

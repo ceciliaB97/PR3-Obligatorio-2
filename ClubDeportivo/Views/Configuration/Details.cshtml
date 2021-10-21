@@ -1,0 +1,70 @@
+﻿@model Dominio.Configuration
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Configuration</h2>
+
+<div>
+    <h4>Values</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.CantActividadesDescuento)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CantActividadesDescuento)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.DescuentoCuponera)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.DescuentoCuponera)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.CostoFijo)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CostoFijo)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.DescuentoPaseLibre)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.DescuentoPaseLibre)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.AntiguedadEstablecida)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.AntiguedadEstablecida)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.MontoUnitarioCuponera)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.MontoUnitarioCuponera)
+        </dd>
+
+    </dl>
+</div>
+
+
+<!--
+<p>
+    @Html.ActionLink("Edit", "Edit", new { /* id = Model.PrimaryKey */ }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>
+    -->

@@ -1,0 +1,43 @@
+﻿@using System;
+@using System.Collections;
+@using Dominio;
+@{
+    ViewBag.Title = "Ingresos Socio";
+}
+
+<h2>Ingresos Socio - @ViewBag.Cedula</h2>
+
+
+<form action="~/Socio/MostrarIngresosSocio" method="POST">
+    <input type="hidden" value="@ViewBag.Cedula" name="cedula" />
+
+
+    <label>Fecha Inicio</label>
+    <input type="datetime" id="fechaInit" name="start" />
+    &nbsp;
+    <label>Fecha Fin</label>
+    <input type="datetime" id="fechaEnd" name="end" />
+
+    <br />
+    <br />
+    <input type="submit" value="Filtrar por fecha" />
+</form>
+<br />
+<table class="table">
+    <thead>
+        <tr>
+            <th>Nombre Actividad</th>
+            <th>Fecha Ingreso</th>
+        </tr>
+    </thead>
+
+    <tbody>
+        @foreach (ActividadSocio actSocio in ViewBag.Datos)
+        {
+            <tr>
+                <td>@actSocio.Actividad.Nombre</td>
+                <td>@actSocio.Fecha</td>
+            </tr>
+        }
+        </tbody>
+</table>

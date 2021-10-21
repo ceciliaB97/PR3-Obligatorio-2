@@ -1,0 +1,79 @@
+﻿@model Dominio.PaseLibre
+
+@{
+    ViewBag.Title = "DetallePaseLibre";
+}
+
+<h2>MostrarPagoPaseLibre</h2>
+
+<h3>Are you sure you want to delete this?</h3>
+<div>
+    <h4>PaseLibre</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Nombre)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Nombre)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Descipcion)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Descipcion)
+        </dd>
+
+        @if (ViewBag.FechaPago != null)
+        {
+
+            <dt>
+                @Html.DisplayNameFor(model => model.FechaPago)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.FechaPago)
+            </dd>
+
+        }
+
+        @if (ViewBag.FechaPago == null)
+        {
+            <dt>
+                @Html.DisplayNameFor(model => model.FechaPago)
+            </dt>
+
+            <dt>No se ha realizado el pago.</dt>
+        }
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Active)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Active)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.TipoMembresia)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.TipoMembresia)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Delete" class="btn btn-default" /> |
+            @Html.ActionLink("Back to List", "Index")
+        </div>
+    }
+</div>
