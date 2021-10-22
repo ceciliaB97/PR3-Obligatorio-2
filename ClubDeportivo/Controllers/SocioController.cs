@@ -5,7 +5,6 @@ using System.Web;
 using System.Web.Mvc;
 using Dominio;
 using Auxiliar;
-using ClubDeportivo.ServiceClubSolis;
 
 namespace ClubDeportivo.Controllers
 {
@@ -229,27 +228,30 @@ namespace ClubDeportivo.Controllers
             else
             {
                 // Create a client object with the given client endpoint configuration.
-                ServiceClient clubSolisClient = new ServiceClient("BasicHttpBinding_IService");
+                //ServiceClient clubSolisClient = new ServiceClient("BasicHttpBinding_IService");
 
-                ActividadSocioDTOResult resService = clubSolisClient.IngresarSocioActividad(new ActividadSocioDTO
-                {
-                    Fecha = new DateTime(DateTime.Now.Year, DateTime.Now.Month, DateTime.Now.Day, hora, 0, 0),
-                    IdActividad = idActividad,
-                    IdSocio = idSocio
-                });
+                //ActividadSocioDTOResult resService = clubSolisClient.IngresarSocioActividad(new ActividadSocioDTO
+                //{
+                //    Fecha = new DateTime(DateTime.Now.Year, DateTime.Now.Month, DateTime.Now.Day, hora, 0, 0),
+                //    IdActividad = idActividad,
+                //    IdSocio = idSocio
+                //});
 
-                if (resService.Success)
-                {
-                    Facade.ActualizarActividadesClub();
+                //if (resService.Success)
+                //{
+                //    Facade.ActualizarActividadesClub();
 
-                    ViewBag.Message = "Socio ingresado exitosamente en la actividad";
-                    return View("Success");
-                }
-                else
-                {
-                    ViewBag.Message = resService.Error;
-                    return View("Error");
-                }
+                //    ViewBag.Message = "Socio ingresado exitosamente en la actividad";
+                //    return View("Success");
+                //}
+                //else
+                //{
+                //    ViewBag.Message = resService.Error;
+                //    return View("Error");
+                //}
+
+                ViewBag.Message = "IMPLEMENTAR!";
+                return View("Error");
 
             }
 

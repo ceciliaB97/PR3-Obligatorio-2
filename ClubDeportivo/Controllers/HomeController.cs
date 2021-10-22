@@ -1,5 +1,4 @@
 ﻿using Auxiliar;
-using ClubDeportivo.ServiceClubSolis;
 using Dominio;
 using System;
 using System.Collections.Generic;
