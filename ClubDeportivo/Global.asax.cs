@@ -21,6 +21,9 @@ namespace ClubDeportivo
             var repoConfig = FabricaRepositorios.ObtenerRepoConfig();
             Configuration configuration =  repoConfig.Buscar(1);
             Facade.Configuration = configuration;
+            //agregar precarga de usuarios
+            Facade.PrecargaUsuarios();
+            //agregar precarga de actividades, con socios con horarios ya cargados
 
 
             Facade.ActualizarActividadesClub();

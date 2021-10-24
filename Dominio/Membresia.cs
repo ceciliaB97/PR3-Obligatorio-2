@@ -30,7 +30,6 @@ namespace Dominio
         public string TipoMembresia { get; set; }
         
         public decimal Precio { get; set; }
-        [InverseProperty("Membresia")]
         public List<Actividad> Actividades { get; set; }
 
         public string Tipo { get; set; }

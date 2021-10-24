@@ -7,8 +7,13 @@ using System.Threading.Tasks;
 
 namespace Dominio
 {
-    public interface IRepoUsuario : IRepositorio<Usuario>
+    public interface IRepoUsuario
     {
-        int buscarLogin(string mail, string password);
-	}
+        void Precarga();
+        bool buscarLogin(string mail, string password);
+
+        bool Alta(Usuario t);
+
+        Usuario Buscar(int id);
+    }
 }

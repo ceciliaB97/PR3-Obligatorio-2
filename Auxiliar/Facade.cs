@@ -166,9 +166,9 @@ namespace Auxiliar
             return new Actividad();
         }
 
-        public int AltaSocio(Socio socio)
+        public bool AltaSocio(Socio socio)
         {
-            int idSocio = 0;
+            bool existe = false;
 
             if (Socio.ValidarDatos(socio))
             {
@@ -182,10 +182,10 @@ namespace Auxiliar
                     Activo = true
                 };
 
-                idSocio = rs.Alta(s);
+                existe = rs.Alta(s);
             }
 
-            return idSocio;
+            return existe;
         }
 
         public bool BajaSocio(int id)
@@ -365,13 +365,13 @@ namespace Auxiliar
             return null;
         }
 
-        public int AltaUsuario(string email, string contrasenia)
+        public bool AltaUsuario(string email, string contrasenia)
         {
             IRepoUsuario ru = FabricaRepositorios.ObtenerRepoUsuarios();
 
-            int existe = ru.buscarLogin(email, contrasenia);
+            bool existe = ru.buscarLogin(email, contrasenia);
 
-            if (existe == -1)
+            if (!existe)
             {
                 //en caso de que no exista
                 Usuario u = new Usuario()
@@ -380,28 +380,30 @@ namespace Auxiliar
                     Password = contrasenia
                 };
 
-                int res = ru.Alta(u);
+                bool res = ru.Alta(u);
                 return res;
             }
             else
             {
                 //en caso de que ya exista
-                return 0;
+                return false;
             }
         }
 
-        public int LoginUsuario(string mail, string password)
+        public bool LoginUsuario(string mail, string password)
         {
             IRepoUsuario ru = FabricaRepositorios.ObtenerRepoUsuarios();
 
-            int existe = ru.buscarLogin(mail, password);
+            bool existe = ru.buscarLogin(mail, password);
 
             return existe;
         }
 
-        public int LogOutUsuario(string email)
+        public static void PrecargaUsuarios()
         {
-            return 0;
+            IRepoUsuario ru = FabricaRepositorios.ObtenerRepoUsuarios();
+
+            ru.Precarga();
         }
 
         public double PagarMensualidadSocio(int cedulaSocio)

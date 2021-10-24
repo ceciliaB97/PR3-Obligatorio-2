@@ -88,8 +88,8 @@ namespace ClubDeportivo.Controllers
                 // TODO: Add insert logic here
                 if (Socio.ValidarDatos(socio))
                 {
-                    int idSocio = f1.AltaSocio(socio);
-                    if (idSocio > 0)
+                    bool crearSocio = f1.AltaSocio(socio);
+                    if (crearSocio)
                     {
                         ViewBag.Message = "El socio se ha creado exitosamente";
                         return View("Success");

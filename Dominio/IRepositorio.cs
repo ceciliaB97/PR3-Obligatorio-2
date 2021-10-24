@@ -8,7 +8,7 @@ namespace Dominio
 {
     public interface IRepositorio<T>
     {
-        int Alta(T t);
+        bool Alta(T t);
         bool Baja(int id);
         bool Modificacion(T t);
         T Buscar(int id);

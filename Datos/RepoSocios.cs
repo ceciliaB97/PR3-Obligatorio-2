@@ -411,5 +411,9 @@ namespace Repositorios
 
 		}
 
-	}
+        bool IRepositorio<Socio>.Alta(Socio t)
+        {
+            throw new NotImplementedException();
+        }
+    }
 }

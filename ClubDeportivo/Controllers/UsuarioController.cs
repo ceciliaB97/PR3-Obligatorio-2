@@ -39,8 +39,8 @@ namespace ClubDeportivo.Controllers
                 if (Usuario.validarDatosUsuario(usuario))
                 {
                     // TODO: Add insert logic here
-                    int alta = f1.AltaUsuario(usuario.Mail, usuario.Password);
-                    if (alta != 0)
+                    bool alta = f1.AltaUsuario(usuario.Mail, usuario.Password);
+                    if (alta)
                     {
                         ViewBag.Message = "Usuario creado exitosamente";
                         return View("Success");

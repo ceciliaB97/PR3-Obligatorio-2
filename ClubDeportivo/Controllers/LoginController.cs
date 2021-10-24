@@ -23,9 +23,9 @@ namespace ClubDeportivo.Controllers
         public ActionResult InicioSesion(Usuario usuario)
         {
 
-            int existe = f1.LoginUsuario(usuario.Mail, usuario.Password);
+            bool existe = f1.LoginUsuario(usuario.Mail, usuario.Password);
 
-            if (existe == 1)
+            if (existe)
             {
                 Session["LogueadoMail"] = usuario.Mail;
                 Session["Logueado"] = true;

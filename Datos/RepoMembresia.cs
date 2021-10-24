@@ -475,5 +475,9 @@ namespace Repositorios
             return false;
         }
 
+        bool IRepositorio<Membresia>.Alta(Membresia t)
+        {
+            throw new NotImplementedException();
+        }
     }
 }
