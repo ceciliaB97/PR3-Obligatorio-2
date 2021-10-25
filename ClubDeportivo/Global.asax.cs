@@ -27,7 +27,11 @@ namespace ClubDeportivo
 
 
             Facade.ActualizarActividadesClub();
-           
+
+            //Session["LogueadoMail"] = null;
+            //Session["Logueado"] = null;
+
+
         }
     }
 }

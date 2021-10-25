@@ -261,7 +261,7 @@ namespace Repositorios
 			return new List<Actividad>();
 		}
 
-		public bool Modificacion(Actividad t)
+		public Actividad Modificacion(Actividad t)
 		{
 			//		string query_update = @"UPDATE [dbo].[Actividad]
 			//  SET [Nombre] = @nombre
@@ -303,7 +303,7 @@ namespace Repositorios
 
 			//		return result;
 
-			return false;
+			return null;
 		}
 
         bool IRepositorio<Actividad>.Alta(Actividad t)

@@ -14,24 +14,30 @@ namespace Dominio
     {
         [Required, Key]
         public int Id { get; set; }
-        [Required]
-        public int IdMembresia { get; set; }
-        [Required]
-        public int IdSocio { get { return IdSocio; } set { IdSocio = Socio.Id; } }
-        [ForeignKey("IdSocio")]
+
+
+        // [ForeignKey("IdSocio")]
+
+        [HiddenInput(DisplayValue = false)]
         public Socio Socio { get; set; }
+
+        [HiddenInput(DisplayValue = false)] //ForeignKey("IdMembresia")
+        public Membresia Membresia { get; set; }
+
         [Required]
         public DateTime FechaHora { get; set; }
         [Required, Range(20, 500)]
         public int Cupos { get; set; }
+
+        public string Nombre { get; set; }
+
         [Required, Range(4,89)]
         public int EdadMinima { get; set; }
 
         [Required, Range(4, 89)]
         public int EdadMaxima { get; set; }
 
-        [HiddenInput(DisplayValue = false), ForeignKey("IdMembresia")]
-        public Membresia Membresia { get; set; }
+        public List<Horario> Horarios { get; set; }
 
         public static bool ValidarFechaHora (DateTime fechaHora)
         {
@@ -42,9 +48,6 @@ namespace Dominio
 
             return false;
         }
-
-        public string Nombre { get; set; }
-        public List<Horario> Horarios { get; set; }
 
     }
 }

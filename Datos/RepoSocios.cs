@@ -83,7 +83,7 @@ namespace Repositorios
             return -1;
 		}
 
-        public List<SocioMembresia> ListarSocioMembresia(){
+        public List<Membresia> ListarSocioMembresia(){
 
             //var connStr = SQLADOHelper.GetConnectionString();
 
@@ -368,7 +368,7 @@ namespace Repositorios
 
         }
 
-        public bool Modificacion(Socio t)
+        public Socio Modificacion(Socio t)
         {
             //var result = false;
 
@@ -407,7 +407,7 @@ namespace Repositorios
             //}
 
             //return result;
-            return false;
+            return null;
 
 		}
 

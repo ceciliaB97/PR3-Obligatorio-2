@@ -11,7 +11,7 @@ namespace Dominio
 	{
 		Socio BuscarPorCedula(decimal cedulaSocio);
 		int IngresarActividadSocio(int idSocio, Actividad actividad,DateTime dateTime);
-		List<SocioMembresia> ListarSocioMembresia();
+		List<Membresia> ListarSocioMembresia();
 		List<SocioActividad> ListarSocioActividad();
 	}
 	

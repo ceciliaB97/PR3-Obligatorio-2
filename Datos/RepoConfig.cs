@@ -11,8 +11,6 @@ namespace Repositorios
 {
 	public class RepoConfig : IRepoConfig
 	{
-		private const string TABLE_NAME = "Configuration";
-
 
 		public int Alta(Configuration t)
 		{
@@ -119,9 +117,9 @@ namespace Repositorios
 			return null;
 		}
 
-		public bool Modificacion(Configuration t)
+		public Configuration Modificacion(Configuration t)
 		{
-			return false;
+			return new Configuration();
 		}
 
         bool IRepositorio<Configuration>.Alta(Configuration t)

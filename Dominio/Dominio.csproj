@@ -178,25 +178,24 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Actividad.cs" />
+    <Compile Include="CodeFirstEntities\Actividad.cs" />
     <Compile Include="ActividadHora.cs" />
     <Compile Include="ActividadSocio.cs" />
-    <Compile Include="Configuration.cs" />
-    <Compile Include="Cuponera.cs" />
-    <Compile Include="Horario.cs" />
+    <Compile Include="CodeFirstEntities\Configuration.cs" />
+    <Compile Include="CodeFirstEntities\Cuponera.cs" />
+    <Compile Include="CodeFirstEntities\Horario.cs" />
     <Compile Include="IRepoConfig.cs" />
     <Compile Include="IRepositorio.cs" />
     <Compile Include="IRepoUsuario.cs" />
     <Compile Include="IRepoSocios.cs" />
     <Compile Include="IRepoActividad.cs" />
     <Compile Include="IRepoMembresia.cs" />
-    <Compile Include="Membresia.cs" />
-    <Compile Include="PaseLibre.cs" />
+    <Compile Include="CodeFirstEntities\Membresia.cs" />
+    <Compile Include="CodeFirstEntities\PaseLibre.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Socio.cs" />
-    <Compile Include="SocioActividad.cs" />
-    <Compile Include="SocioMembresia.cs" />
-    <Compile Include="Usuario.cs" />
+    <Compile Include="CodeFirstEntities\Socio.cs" />
+    <Compile Include="CodeFirstEntities\SocioActividad.cs" />
+    <Compile Include="CodeFirstEntities\Usuario.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />

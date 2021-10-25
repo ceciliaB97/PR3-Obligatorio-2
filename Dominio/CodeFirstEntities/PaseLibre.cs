@@ -26,7 +26,10 @@ namespace Dominio
 
         //}
 
-
+        public PaseLibre()
+		{
+            TipoMembresia = "paselibre";
+		}
         public override double calcularPagoFinal(Configuration config, int antiguedadSocio = 0)
         {
             double result = config.CostoFijo;

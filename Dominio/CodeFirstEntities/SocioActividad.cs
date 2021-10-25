@@ -8,8 +8,9 @@ namespace Dominio
 {
     public class SocioActividad
     {
-        public int IdSocio { get; set; }
-        public int IdActividad { get; set; }
+        public int Id { get; set; }
+        public Socio Socio { get; set; }
+        public Actividad Actividad { get; set; }
         public DateTime Fecha { get; set; }
     }
 }

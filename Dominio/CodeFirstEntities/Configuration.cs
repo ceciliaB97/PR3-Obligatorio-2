@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -8,6 +9,9 @@ namespace Dominio
 {
 	public class Configuration
 	{
+		//[Required, Key]
+		public int Id { get; set; }
+
 		public int CantActividadesDescuento { get; set; }
 		public double DescuentoCuponera { get; set; }
 		public double CostoFijo { get; set; }

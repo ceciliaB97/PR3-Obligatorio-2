@@ -132,7 +132,7 @@ namespace ClubDeportivo.Controllers
                 if (Socio.ValidarDatos(socio))
                 {
                     socio.Id = id;
-                    bool alta = Facade.Instance.ModificarSocio(socio);
+                    Socio aux= Facade.Instance.ModificarSocio(socio);
 
                     return RedirectToAction("Index");
                 }
@@ -279,7 +279,7 @@ namespace ClubDeportivo.Controllers
             else
             {
 
-                if (c.CantIngresos < 8 || c.CantIngresos > 60)
+                if (c.CantActividades < 8 || c.CantActividades > 60)
                 {
                     ViewBag.Message = "La cantidad de actividades es incorrecta, debe ser entre 8 y 60";
                     return View("Error");

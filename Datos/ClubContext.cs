@@ -17,6 +17,8 @@ namespace Repositorios
 
         public DbSet<Actividad> Actividades { get; set; }
 
+        public DbSet<Configuration> Configuracion { get; set; }
+
         public ClubContext() : base(SQLADOHelper.GetConnectionString())
         {
 
