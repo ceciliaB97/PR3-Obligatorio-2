@@ -11,12 +11,11 @@ namespace Dominio
     [Table("Usuarios")]
     public class Usuario
     {
-        [Column("Id"), Key]
         public int Id { get; set; }
 
-        [Required, EmailAddress, StringLength(50)]
+        [Required, EmailAddress]
         public string Mail { set; get; }
-        [Required, MinLength(6), MaxLength(100), Display(Name = "Contraseña")]
+        [Required, MinLength(6), Display(Name = "Contraseña")]
         public string Password { get; set; }
 
         public Usuario()

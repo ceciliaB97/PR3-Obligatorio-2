@@ -220,7 +220,7 @@ namespace Auxiliar
 
             foreach (SocioMembresia m in socioMembresia)
             {
-                if (socio.Id == m.IdSocio)
+                if (socio.Id == m.Socio.Id)
                 {
                     Membresia mem = BuscarMembresiaEnLista(membresia, m.IdMembresia);
                     if (mem != null)
@@ -279,14 +279,14 @@ namespace Auxiliar
             foreach (SocioMembresia m in socioMembresia)
             {
                 Socio socio = null;
-                if (!mapSocio.ContainsKey(m.IdSocio))
+                if (!mapSocio.ContainsKey(m.Socio.Id))
                 {
-                    socio = BuscarSocioEnLista(lista, m.IdSocio);
-                    mapSocio.Add(m.IdSocio, socio);
+                    socio = BuscarSocioEnLista(lista, m.Socio.Id);
+                    mapSocio.Add(m.Socio.Id, socio);
                 }
                 else
                 {
-                    socio = mapSocio[m.IdSocio];
+                    socio = mapSocio[m.Socio.Id];
                 }
 
 
@@ -445,7 +445,7 @@ namespace Auxiliar
         //            Error = "Parametros invalidos al tratar ingresar un socio en una actividad"
         //        };
         //    }
-        //    Socio socio = repoSocios.Buscar(actividadSocio.IdSocio);
+        //    Socio socio = repoSocios.Buscar(actividadIdSocioSocio);
 
 
         //    if (socio == null)

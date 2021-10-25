@@ -11,9 +11,14 @@ namespace Dominio
     [Table("SocioMembresias")]
     public class SocioMembresia
     {
-        [Required, Key, ForeignKey("IdSocio")]
+        [Required]
+        public int Id { get; set; }
+        [Required, ForeignKey("Socio")]
         public int IdSocio { get; set; }
-        [Required, Key, ForeignKey("IdMembresia")]
+        public virtual Socio Socio { get; set; }
+        [Required, ForeignKey("Membresia")]
         public int IdMembresia { get; set; }
+        //virtual membresia
+        public virtual Membresia Membresia { get; set; }
     }
 }

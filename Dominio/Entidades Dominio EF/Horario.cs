@@ -11,8 +11,10 @@ namespace Dominio
     [Table("Horarios")]
     public class Horario
     {
-        [Required, Key, ForeignKey("IdActividad")]
-        public int IdActividad { get; set; }
+        //key
+        public int Id { get; set; }
+        [Required, ForeignKey("Id")]
+        public Actividad Actividad { get; set; }
         [Range(0,6)]
         public DayOfWeek DiaSemana { get; set; } //De 1 a 7
         [Range(7, 23)]

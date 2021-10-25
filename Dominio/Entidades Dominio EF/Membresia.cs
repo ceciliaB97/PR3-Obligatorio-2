@@ -13,22 +13,23 @@ namespace Dominio
     [Table("Membresias")]
     public abstract class Membresia
     {
-        [Required, Key]
+        [Required]
         public int Id { get; set; }
-        [Required, Display(Name = "Id Socio"), ReadOnly(true)]
+
+        [Required, ReadOnly(true), ForeignKey("Socio")]
         public int IdSocio { get; set; }
-        [Required, Range(1, 12), ReadOnly(true), HiddenInput(DisplayValue = false), ForeignKey("IdSocio")]
-        public Socio Socio { get; set; }
         public int Mes { get; set; }
         [Required, Display(Name = "Año"), ReadOnly(true)]
         public int Anio { get; set; }
         [Required, Display(Name = "Fecha de pago"), ReadOnly(true)]
         public DateTime? FechaPago { get; set; }
+        //virtual socio
+        public virtual Socio Socio { get; set; }
 
 
         [Required]
         public string TipoMembresia { get; set; }
-        
+
         public decimal Precio { get; set; }
         public List<Actividad> Actividades { get; set; }
 
@@ -64,7 +65,7 @@ namespace Dominio
             FechaPago = fechaPago;
             Actividades = new List<Actividad>();
         }
-       // public abstract decimal CalcularPrecio();
+        // public abstract decimal CalcularPrecio();
 
         public abstract double calcularPagoFinal(Configuration config, int antiguedadSocio = 0);
 

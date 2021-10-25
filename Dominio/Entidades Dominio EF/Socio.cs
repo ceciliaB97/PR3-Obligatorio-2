@@ -11,7 +11,7 @@ namespace Dominio
     [Table("Socios")]
     public class Socio
     {
-        [Column("Id"), Key]
+        //[Column("Id"), Key]
         public int Id { get; set; }
         [Required, Range(7, 9, ErrorMessage = "Cedula debe tener entre 7 y 9 digitos"), Index(IsUnique = true)]
         public int Cedula { get; set; }
@@ -22,9 +22,9 @@ namespace Dominio
         //.value y .HasValue
         [Required, Display(Name = "Fecha de ingreso")]
         public DateTime FechaIngreso { get; set; }
-        [InverseProperty("Socio")]
+        [ForeignKey("IdMembresia")]
         public List<Membresia> Membresias { get; set; }
-
+        [ForeignKey("IdActividad")]
         public List<ActividadSocio> ActividadSocios { get; set; }
 
         public bool Activo { get; set; }

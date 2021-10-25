@@ -12,14 +12,9 @@ namespace Dominio
     [Table("Actividades")]
     public class Actividad
     {
-        [Required, Key]
+       // [Required, Key]
         public int Id { get; set; }
-        [Required]
-        public int IdMembresia { get; set; }
-        [Required]
-        public int IdSocio { get { return IdSocio; } set { IdSocio = Socio.Id; } }
-        [ForeignKey("IdSocio")]
-        public Socio Socio { get; set; }
+
         [Required]
         public DateTime FechaHora { get; set; }
         [Required, Range(20, 500)]
@@ -29,9 +24,6 @@ namespace Dominio
 
         [Required, Range(4, 89)]
         public int EdadMaxima { get; set; }
-
-        [HiddenInput(DisplayValue = false), ForeignKey("IdMembresia")]
-        public Membresia Membresia { get; set; }
 
         public static bool ValidarFechaHora (DateTime fechaHora)
         {

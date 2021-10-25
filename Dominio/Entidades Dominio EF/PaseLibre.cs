@@ -26,6 +26,10 @@ namespace Dominio
 
         //}
 
+        public PaseLibre() : base()
+        {
+            Tipo = "paselibre";
+        }
 
         public override double calcularPagoFinal(Configuration config, int antiguedadSocio = 0)
         {

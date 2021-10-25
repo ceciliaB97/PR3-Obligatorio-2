@@ -14,8 +14,9 @@ namespace Repositorios
         public void Precarga()
         {
             List<Usuario> lu = new List<Usuario>();
-            Usuario u1 = new Usuario("bernardo@mail.com", "1234a");
-            Usuario u2 = new Usuario("carlos@mail.com", "1234a");
+            //CryptoUtils.Crypto.Encrypt("1234a");
+            Usuario u1 = new Usuario("bernardo@mail.com", CryptoUtils.Crypto.Encrypt("1234a"));
+            Usuario u2 = new Usuario("carlos@mail.com", CryptoUtils.Crypto.Encrypt("1234a"));
 
             lu.Add(u1);
             lu.Add(u2);
@@ -50,9 +51,9 @@ namespace Repositorios
             Usuario u = null;
             using (ClubContext db = new ClubContext())
             {
-                //string passEncriptada = CryptoUtils.Crypto.Encrypt(password);
+                string passEncriptada = CryptoUtils.Crypto.Encrypt(password);
 
-                u = db.Usuarios.Where(c => c.Mail == mail && c.Password == password).SingleOrDefault();
+                u = db.Usuarios.Where(c => c.Mail == mail && c.Password == passEncriptada).SingleOrDefault();
                 if (u != null)
                 {
                     return true;

@@ -14,13 +14,8 @@ namespace Dominio
     {
         [Required, Range(8,60)]
         public int CantIngresos { get; set; }
-
-        [HiddenInput(DisplayValue = false)]
         public static int NroTopeIngresosParaDescuento { get; set; }
-
-        [HiddenInput(DisplayValue = false)]
         public static int PorcentajeDescuento { get { return PorcentajeDescuento; } set { PorcentajeDescuento = 30; } }
-        [HiddenInput(DisplayValue = false)]
         public static decimal PrecioPorActividad { get { return PrecioPorActividad; } set{ PrecioPorActividad = 100; } }
 
         public Cuponera()
