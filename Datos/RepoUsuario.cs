@@ -52,7 +52,7 @@ namespace Repositorios
             {
                 //string passEncriptada = CryptoUtils.Crypto.Encrypt(password);
 
-                u = db.Usuarios.Where(c => c.Mail == mail && c.Password == password).ToList().SingleOrDefault();
+                u = db.Usuarios.Where(c => c.Mail == mail && c.Password == password).SingleOrDefault();
                 if (u != null)
                 {
                     return true;
