@@ -74,9 +74,9 @@ namespace Auxiliar
             return s.ActividadSocios.Where(e => e.Fecha >= start && e.Fecha < end).ToList();
 
         }
-        public List<ActividadHora> GetActividadesDia(int edadSocio)
+        public List<ActividadHoraio> GetActividadesDia(int edadSocio)
         {
-            List<ActividadHora> result = new List<ActividadHora>();
+            List<ActividadHoraio> result = new List<ActividadHoraio>();
             DateTime _now = DateTime.Now;
 
             foreach (Actividad actividad in ActividadesClub.Values)
@@ -88,7 +88,7 @@ namespace Auxiliar
                     {
                         if (h.DiaSemana == _now.DayOfWeek && h.Hora > _now.Hour) //verificar si puede entrar a la actividad
                         {
-                            result.Add(new ActividadHora
+                            result.Add(new ActividadHoraio
                             {
                                 Id = actividad.Id,
                                 Hora = h.Hora,

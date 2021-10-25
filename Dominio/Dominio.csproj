@@ -179,7 +179,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Entidades Dominio EF\Actividad.cs" />
-    <Compile Include="Entidades Dominio EF\ActividadHora.cs" />
+    <Compile Include="Entidades Dominio EF\ActividadHorario.cs" />
     <Compile Include="Entidades Dominio EF\ActividadSocio.cs" />
     <Compile Include="Configuration.cs" />
     <Compile Include="Entidades Dominio EF\Cuponera.cs" />

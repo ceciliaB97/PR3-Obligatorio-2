@@ -12,11 +12,9 @@ namespace Dominio
     [Table("Actividades")]
     public class Actividad
     {
-       // [Required, Key]
+        [Required]
         public int Id { get; set; }
 
-        [Required]
-        public DateTime FechaHora { get; set; }
         [Required, Range(20, 500)]
         public int Cupos { get; set; }
         [Required, Range(4,89)]
@@ -36,7 +34,10 @@ namespace Dominio
         }
 
         public string Nombre { get; set; }
-        public List<Horario> Horarios { get; set; }
+
+        [ForeignKey("Horario")]
+        public int IdHorario { get; set; }
+        public virtual List<Horario> Horarios { get; set; }
 
     }
 }

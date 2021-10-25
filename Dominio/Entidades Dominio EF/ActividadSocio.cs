@@ -17,9 +17,12 @@ namespace Dominio
 		public int IdSocio { get; set; }
 		[ForeignKey("Actividad")]
 		public int IdActividad { get; set; }
+		[ForeignKey("Membresia")]
+		public int IdMembresia { get; set; }
 		public DateTime Fecha { get; set; }
 
 		public virtual Actividad Actividad { get; set; }
 		public virtual Socio Socio { get; set; }
+		public virtual Membresia Membresia { get; set; }
 	}
 }
