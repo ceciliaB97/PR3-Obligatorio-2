@@ -31,6 +31,9 @@ namespace Repositorios
                     {*/
                     //  Alta(item);
                     //}
+                    
+                    //tal vez lo hace de una forma directa sin tener que llamar al otro método
+                    //con el contexto creado localmente en este método, será más eficiente esto, que llamar al método?
                     if (context.Usuarios.SingleOrDefault(e => e.Mail == item.Mail && e.Password == item.Password) == null)
                     {
                         context.Usuarios.Add(item);
@@ -134,6 +137,9 @@ namespace Repositorios
                 //string passEncriptada = CryptoUtils.Crypto.Encrypt(password);
                 //var usuarios = db.Usuarios.ToList();
 
+                //get the single user who matches the mail and password, or return null
+                //si single or default estuviera al final, agarra lo que haya y lo devuelve luego de hacer el filtro
+                //solo si es 1 elemento único en la lista
                 u = db.Usuarios.SingleOrDefault(c => c.Mail == mail && c.Password == password);
                 if (u != null)
                 {
