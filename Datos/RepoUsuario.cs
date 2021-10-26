@@ -21,14 +21,94 @@ namespace Repositorios
             lu.Add(u1);
             lu.Add(u2);
 
-            foreach (var item in lu)
+            using (var context = new ClubContext())
             {
-                bool existe = buscarLogin(item.Mail, item.Password);
-
-                if (!existe)
+                foreach (var item in lu)
                 {
-                    Alta(item);
+                    //bool existe = buscarLogin(item.Mail, item.Password);
+
+                    /*if (!existe)
+                    {*/
+                    //  Alta(item);
+                    //}
+                    if (context.Usuarios.SingleOrDefault(e => e.Mail == item.Mail && e.Password == item.Password) == null)
+                    {
+                        context.Usuarios.Add(item);
+                    }
+
                 }
+
+                //prueba precarga datos
+                var h = new Horario
+                {
+                    DiaSemana = DayOfWeek.Monday,
+                    Hora = 7
+                };
+                context.Horarios.Add(h);
+
+                var a1 = new Actividad
+                {
+                    ActividadHorarios = new List<Horario>
+                    {
+                      h 
+                    },
+                    EdadMinima = 7,
+                    EdadMaxima = 70,
+                    Cupos = 20,
+                    Nombre = "Natacion"
+                };
+
+                context.Actividades.Add(a1);
+
+                var m1 = new Cuponera
+                {
+                    CantActividades = 10,
+                    Anio = 2021,
+                    Mes = 7,
+                    FechaPago = null,
+                    Precio = 800,
+                    TipoMembresia = "cuponera",
+                    Actividades = new List<Actividad>
+					{
+                        a1
+					}
+                };
+                var m2 = new PaseLibre
+                {
+                    Anio = 2021,
+                    Mes = 8,
+                    FechaPago = null,
+                    Precio = 2000,
+                    TipoMembresia = "paselibre",
+                    Actividades = new List<Actividad>
+					{
+                        a1
+					}
+                };
+                
+                context.Membresias.Add(m1);
+                context.Membresias.Add(m2);
+
+				var socio = new Socio()
+				{
+					Activo = true,
+					Cedula = 45042994,
+					ActividadSocios = new List<ActividadSocio>(),
+					FechaIngreso = DateTime.Now,
+					FechaNacimiento = DateTime.Now.AddYears(-30),
+					NombreApellido = "Sebastian Piazza",
+					Membresias = new List<Membresia>
+					{
+						m1,
+						m2
+					}
+
+				};
+
+
+				context.Socios.Add(socio); 
+
+				int filasAfectadas = context.SaveChanges();
             }
         }
 
@@ -51,9 +131,10 @@ namespace Repositorios
             Usuario u = null;
             using (ClubContext db = new ClubContext())
             {
-                string passEncriptada = CryptoUtils.Crypto.Encrypt(password);
+                //string passEncriptada = CryptoUtils.Crypto.Encrypt(password);
+                //var usuarios = db.Usuarios.ToList();
 
-                u = db.Usuarios.Where(c => c.Mail == mail && c.Password == passEncriptada).SingleOrDefault();
+                u = db.Usuarios.SingleOrDefault(c => c.Mail == mail && c.Password == password);
                 if (u != null)
                 {
                     return true;
@@ -66,7 +147,7 @@ namespace Repositorios
         {
             using (ClubContext db = new ClubContext())
             {
-                return db.Usuarios.Where(c => c.Id == id).ToList().SingleOrDefault();
+                return db.Usuarios.Find(id);
             }
         }
 

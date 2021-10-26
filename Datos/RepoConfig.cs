@@ -14,6 +14,26 @@ namespace Repositorios
 		private const string TABLE_NAME = "Configuration";
 
 
+		public void Precarga()
+		{
+			using (var context = new ClubContext())
+			{
+				if (!context.Configuracion.Any())
+				{
+					context.Configuracion.Add(new Configuration
+					{
+						CantActividadesDescuento = 10,
+						DescuentoCuponera = 15,
+						CostoFijo = 1000,
+						DescuentoPaseLibre = 25,
+						AntiguedadEstablecida = 5,
+						MontoUnitarioCuponera = 30
+					});
+				}
+
+				context.SaveChanges();
+			}
+		}
 		public int Alta(Configuration t)
 		{
 			return -1;
@@ -26,34 +46,20 @@ namespace Repositorios
 
 		}
 
+		public Configuration GetConfiguration()
+		{
+			using (var context = new ClubContext())
+			{
+				return context.Configuracion.SingleOrDefault();
+			}
+		}
+
 		public Configuration Buscar(int id)
 		{
-			//var connStr=SQLADOHelper.GetConnectionString();
-			//Configuration config;
-			//using (var connection = new SqlConnection(connStr))
-			//{
-			//	try
-			//	{
-			//		connection.Open();
-			//		var command = SQLADOHelper.GetByIdSQLCommand(connection, TABLE_NAME, id);
-			//		SqlDataReader reader = command.ExecuteReader();
-
-
-			//		reader.Read();
-			//		config=GetConfigFromReader(reader);
-
-			//	}
-			//	catch (Exception ex)
-			//	{
-			//		throw ex;
-			//	}
-			//	finally
-			//	{
-			//		connection.Close();
-			//	}
-			//}
-			//return config;
-			return null;
+			using (var context = new ClubContext())
+			{
+				return context.Configuracion.Find(id);
+			}
 
 		}
 
@@ -119,9 +125,9 @@ namespace Repositorios
 			return null;
 		}
 
-		public bool Modificacion(Configuration t)
+		public Configuration Modificacion(Configuration t)
 		{
-			return false;
+			return null;
 		}
 
         bool IRepositorio<Configuration>.Alta(Configuration t)

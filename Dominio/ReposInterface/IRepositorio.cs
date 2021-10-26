@@ -10,7 +10,7 @@ namespace Dominio
     {
         bool Alta(T t);
         bool Baja(int id);
-        T Modificacion(T t);
+        bool Modificacion(T t);
         T Buscar(int id);
         List<T> Listar();
 

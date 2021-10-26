@@ -10,6 +10,6 @@ namespace Dominio
 	public interface IRepoActividad : IRepositorio<Actividad>
 	{
 		List<Horario> ListarHorariosActividad(int idActividad);
-		ActividadSocio BuscarSocioActividad(int idSocio, int idActividad);
+		SocioActividad BuscarSocioActividad(int idSocio, int idActividad);
 	}
 }

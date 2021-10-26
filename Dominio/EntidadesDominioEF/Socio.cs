@@ -13,7 +13,11 @@ namespace Dominio
     {
         //[Column("Id"), Key]
         public int Id { get; set; }
-        [Required, Range(7, 9, ErrorMessage = "Cedula debe tener entre 7 y 9 digitos"), Index(IsUnique = true)]
+
+        /*TODO: corregir validacion esta... range no valida la cantidad de digitos*/
+        /*Range(7, 8, ErrorMessage = "Cedula debe tener entre 7 y 8 digitos")*/
+
+        [Required, Index(IsUnique = true)]
         public int Cedula { get; set; }
         [Required, StringLength(50, MinimumLength = 6), Display(Name = "Nombre Completo")]
         public string NombreApellido { get; set; }
@@ -22,15 +26,20 @@ namespace Dominio
         //.value y .HasValue
         [Required, Display(Name = "Fecha de ingreso")]
         public DateTime FechaIngreso { get; set; }
-        [ForeignKey("IdMembresia")]
-        public List<Membresia> Membresias { get; set; }
-        [ForeignKey("IdActividad")]
-        public List<ActividadSocio> ActividadSocios { get; set; }
+        
+        
+        //[ForeignKey("IdMembresia")]
+        public virtual List<Membresia> Membresias { get; set; }
+
+
+        //[ForeignKey("IdActividad")]
+        public virtual List<ActividadSocio> ActividadSocios { get; set; }
 
         public bool Activo { get; set; }
         public Socio()
         {
-
+            Membresias = new List<Membresia>();
+            ActividadSocios = new List<ActividadSocio>(); 
         }
 
         public Socio(int id, int cedula, string nombreApellido, DateTime fechaNacimiento)

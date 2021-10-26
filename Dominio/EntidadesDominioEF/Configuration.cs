@@ -8,6 +8,7 @@ namespace Dominio
 {
 	public class Configuration
 	{
+		public int Id { get; set; }
 		public int CantActividadesDescuento { get; set; }
 		public double DescuentoCuponera { get; set; }
 		public double CostoFijo { get; set; }

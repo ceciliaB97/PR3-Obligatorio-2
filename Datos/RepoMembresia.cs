@@ -367,7 +367,7 @@ namespace Repositorios
              return null;
         }
 
-        public bool Modificacion(Membresia t)
+        public Membresia Modificacion(Membresia t)
         {
             //           string query_update = @"UPDATE [dbo].[Membresia]
             //  SET [Nombre] = @nombre
@@ -418,7 +418,7 @@ namespace Repositorios
             //           }
 
             //           return result;
-            return false;
+            return null;
         }
 
         public bool ModificarFechaPagoHoy(Membresia t)

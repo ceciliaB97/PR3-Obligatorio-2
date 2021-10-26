@@ -178,25 +178,25 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Entidades Dominio EF\Actividad.cs" />
-    <Compile Include="Entidades Dominio EF\ActividadHorario.cs" />
-    <Compile Include="Entidades Dominio EF\ActividadSocio.cs" />
-    <Compile Include="Configuration.cs" />
-    <Compile Include="Entidades Dominio EF\Cuponera.cs" />
-    <Compile Include="Entidades Dominio EF\Horario.cs" />
+    <Compile Include="EntidadesDominioEF\Actividad.cs" />
+    <Compile Include="ActividadHorarioDTO.cs" />
+    <Compile Include="EntidadesDominioEF\ActividadSocio.cs" />
+    <Compile Include="EntidadesDominioEF\Configuration.cs" />
+    <Compile Include="EntidadesDominioEF\Cuponera.cs" />
+    <Compile Include="EntidadesDominioEF\Horario.cs" />
     <Compile Include="IRepoConfig.cs" />
     <Compile Include="IRepositorio.cs" />
     <Compile Include="IRepoUsuario.cs" />
     <Compile Include="IRepoSocios.cs" />
     <Compile Include="IRepoActividad.cs" />
     <Compile Include="IRepoMembresia.cs" />
-    <Compile Include="Entidades Dominio EF\Membresia.cs" />
-    <Compile Include="Entidades Dominio EF\PaseLibre.cs" />
+    <Compile Include="EntidadesDominioEF\Membresia.cs" />
+    <Compile Include="EntidadesDominioEF\PaseLibre.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Entidades Dominio EF\Socio.cs" />
-    <Compile Include="Entidades Dominio EF\SocioActividad.cs" />
-    <Compile Include="Entidades Dominio EF\SocioMembresia.cs" />
-    <Compile Include="Entidades Dominio EF\Usuario.cs" />
+    <Compile Include="EntidadesDominioEF\Socio.cs" />
+    <Compile Include="SocioActividad.cs" />
+    <Compile Include="SocioMembresia.cs" />
+    <Compile Include="EntidadesDominioEF\Usuario.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />

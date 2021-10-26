@@ -83,7 +83,7 @@ namespace Repositorios
             return -1;
 		}
 
-        public List<SocioMembresia> ListarSocioMembresia(){
+        //public List<SocioMembresia> ListarSocioMembresia(){
 
             //var connStr = SQLADOHelper.GetConnectionString();
 
@@ -119,11 +119,11 @@ namespace Repositorios
 
             //return result;            
 
-            return null;
-        }
+        //    return null;
+        //}
 
-        public List<SocioActividad> ListarSocioActividad()
-        {
+        //public List<SocioActividad> ListarSocioActividad()
+        //{
 
             //var connStr = SQLADOHelper.GetConnectionString();
 
@@ -159,8 +159,8 @@ namespace Repositorios
             //}
 
             //return result;
-            return null;
-        }
+        //    return null;
+        //}
 
 
         public int Alta(Socio t)
@@ -368,7 +368,7 @@ namespace Repositorios
 
         }
 
-        public bool Modificacion(Socio t)
+        public Socio Modificacion(Socio t)
         {
             //var result = false;
 
@@ -407,7 +407,7 @@ namespace Repositorios
             //}
 
             //return result;
-            return false;
+            return null;
 
 		}
 

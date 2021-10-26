@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Dominio
 {
-    [Table("PaseLibre")]
+    //[Table("PaseLibre")]
     public class PaseLibre : Membresia
     {
         //public static int TopeAntiguedadParaDescuento { get { return TopeAntiguedadParaDescuento; } set { TopeAntiguedadParaDescuento = 7; } }
@@ -28,7 +28,7 @@ namespace Dominio
 
         public PaseLibre() : base()
         {
-            Tipo = "paselibre";
+            TipoMembresia = "paselibre";
         }
 
         public override double calcularPagoFinal(Configuration config, int antiguedadSocio = 0)

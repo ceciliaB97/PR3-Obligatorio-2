@@ -10,7 +10,5 @@ namespace Dominio
 	public interface IRepoConfig : IRepositorio<Configuration>
 	{
 		//DataTable ListarDataTable();
-		void Precarga();
-		Configuration GetConfiguration();
 	}
 }

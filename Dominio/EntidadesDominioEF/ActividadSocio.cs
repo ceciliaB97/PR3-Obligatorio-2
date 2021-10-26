@@ -8,16 +8,18 @@ using System.Threading.Tasks;
 
 namespace Dominio
 {
-	[Table("ActividadHorarios")]
-	public class ActividadHoraio
+	[Table("ActividadesSocio")]
+	public class ActividadSocio
 	{
-		[Required]
 		public int Id { get; set; }
-		public string Nombre { get; set; }
-		[Range(7, 23)]
-		public int Hora { get; set; }
-		[ForeignKey("Actividad")]
-		public int IdActividad { get; set; }
+
+		[Required]
+		public DateTime Fecha { get; set; }
+
+		[Required]
 		public virtual Actividad Actividad { get; set; }
+
+		[Required]
+		public virtual Socio Socio { get; set; }
 	}
 }

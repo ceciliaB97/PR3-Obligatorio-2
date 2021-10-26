@@ -39,7 +39,7 @@ namespace Auxiliar
             List<Actividad> actividades = ra.Listar();
             foreach (var act in actividades)
             {
-                act.Horarios = ra.ListarHorariosActividad(act.Id);
+                act.ActividadHorarios = ra.ListarHorariosActividad(act.Id);
 
                 Facade.ActividadesClub.Add(act.Id, act);
             }
@@ -74,9 +74,9 @@ namespace Auxiliar
             return s.ActividadSocios.Where(e => e.Fecha >= start && e.Fecha < end).ToList();
 
         }
-        public List<ActividadHoraio> GetActividadesDia(int edadSocio)
+        public List<ActividadHorarioDTO> GetActividadesDia(int edadSocio)
         {
-            List<ActividadHoraio> result = new List<ActividadHoraio>();
+            List<ActividadHorarioDTO> result = new List<ActividadHorarioDTO>();
             DateTime _now = DateTime.Now;
 
             foreach (Actividad actividad in ActividadesClub.Values)
@@ -84,11 +84,11 @@ namespace Auxiliar
 
                 if (actividad.Cupos > 0 && edadSocio >= actividad.EdadMinima && edadSocio <=actividad.EdadMaxima)
                 {
-                    foreach (var h in actividad.Horarios)
+                    foreach (var h in actividad.ActividadHorarios)
                     {
                         if (h.DiaSemana == _now.DayOfWeek && h.Hora > _now.Hour) //verificar si puede entrar a la actividad
                         {
-                            result.Add(new ActividadHoraio
+                            result.Add(new ActividadHorarioDTO
                             {
                                 Id = actividad.Id,
                                 Hora = h.Hora,
@@ -109,7 +109,7 @@ namespace Auxiliar
             return rm.Baja(id);
         }
 
-        public bool ModificacionMembresia(Membresia m)
+        public Membresia ModificacionMembresia(Membresia m)
         {
             return FabricaRepositorios.ObtenerRepoMembresia().Modificacion(m);
         }
@@ -148,7 +148,8 @@ namespace Auxiliar
 
             try
             {
-                return mapSocio[socio.Id].Membresias;
+                return FabricaRepositorios.ObtenerRepoMembresia().ListarPorSocioId(socio.Id); 
+                    //mapSocio[socio.Id].Membresias;
             } catch(Exception err)
             {
                 return new List<Membresia>();
@@ -194,7 +195,7 @@ namespace Auxiliar
             return s;
         }
 
-        public bool ModificarSocio(Socio socio)
+        public Socio ModificarSocio(Socio socio)
         {
             return FabricaRepositorios.ObtenerRepoSocios().Modificacion(socio);
         }
@@ -207,126 +208,126 @@ namespace Auxiliar
 
         public Socio ActualizarSocio(Socio socio)
         {
-            if (socio == null)
-            {
-                return null;
-            }
+            //if (socio == null)
+            //{
+            //    return null;
+            //}
 
-            IRepoSocios rs = FabricaRepositorios.ObtenerRepoSocios();
-            List<Membresia> membresia = FabricaRepositorios.ObtenerRepoMembresia().Listar();
-            List<SocioMembresia> socioMembresia = rs.ListarSocioMembresia();
+            //IRepoSocios rs = FabricaRepositorios.ObtenerRepoSocios();
+            //List<Membresia> membresia = FabricaRepositorios.ObtenerRepoMembresia().Listar();
+            //List<SocioMembresia> socioMembresia = rs.ListarSocioMembresia();
 
-            List<SocioActividad> socioActividades = rs.ListarSocioActividad();
+            //List<SocioActividad> socioActividades = rs.ListarSocioActividad();
 
-            foreach (SocioMembresia m in socioMembresia)
-            {
-                if (socio.Id == m.Socio.Id)
-                {
-                    Membresia mem = BuscarMembresiaEnLista(membresia, m.IdMembresia);
-                    if (mem != null)
-                    {
-                        socio.Membresias.Add(mem);
-                    }
-                    else
-                    {
-                        throw new Exception("Base de datos inconsisitente");
-                    }
-                }
+            //foreach (SocioMembresia m in socioMembresia)
+            //{
+            //    if (socio.Id == m.Socio.Id)
+            //    {
+            //        Membresia mem = BuscarMembresiaEnLista(membresia, m.IdMembresia);
+            //        if (mem != null)
+            //        {
+            //            socio.Membresias.Add(mem);
+            //        }
+            //        else
+            //        {
+            //            throw new Exception("Base de datos inconsisitente");
+            //        }
+            //    }
 
-            }
+            //}
 
 
-            foreach (SocioActividad sa in socioActividades)
-            {
-                if (socio.Id == sa.IdSocio)
-                {
-                    Actividad actividad =
-                                        Facade.ActividadesClub.ContainsKey(sa.IdActividad) ? Facade.ActividadesClub[sa.IdActividad] :
-                                         null;
+            //foreach (SocioActividad sa in socioActividades)
+            //{
+            //    if (socio.Id == sa.IdSocio)
+            //    {
+            //        Actividad actividad =
+            //                            Facade.ActividadesClub.ContainsKey(sa.IdActividad) ? Facade.ActividadesClub[sa.IdActividad] :
+            //                             null;
 
-                    if (actividad != null)
-                    {
-                        socio.ActividadSocios.Add(new ActividadSocio
-                        {
-                            Actividad = actividad,
-                            Socio = socio,
-                            Fecha = sa.Fecha
-                        });
-                    }
-                    else
-                    {
-                        throw new Exception("Base de datos inconsisitente");
-                    }
-                }
+            //        if (actividad != null)
+            //        {
+            //            socio.ActividadSocios.Add(new ActividadSocio
+            //            {
+            //                Actividad = actividad,
+            //                Socio = socio,
+            //                Fecha = sa.Fecha
+            //            });
+            //        }
+            //        else
+            //        {
+            //            throw new Exception("Base de datos inconsisitente");
+            //        }
+            //    }
 
-            }
+            //}
 
-            return socio;
+            return FabricaRepositorios.ObtenerRepoSocios().Modificacion(socio);
         }
 
         public List<Socio> ListaroActualizarSocios()
         {
-            mapSocio = new Dictionary<int, Socio>();
-            mapActividad = new Dictionary<int, Actividad>();
+            //mapSocio = new Dictionary<int, Socio>();
+            //mapActividad = new Dictionary<int, Actividad>();
 
-            IRepoSocios rs = FabricaRepositorios.ObtenerRepoSocios();
-            List<Socio> lista = rs.Listar();
-            List<Membresia> membresia = FabricaRepositorios.ObtenerRepoMembresia().Listar();
-            List<SocioMembresia> socioMembresia = rs.ListarSocioMembresia();
+            //IRepoSocios rs = FabricaRepositorios.ObtenerRepoSocios();
+            //List<Socio> lista = rs.Listar();
+            //List<Membresia> membresia = FabricaRepositorios.ObtenerRepoMembresia().Listar();
+            //List<SocioMembresia> socioMembresia = rs.ListarSocioMembresia();
 
-            List<SocioActividad> socioActividades = rs.ListarSocioActividad();
+            //List<SocioActividad> socioActividades = rs.ListarSocioActividad();
 
-            foreach (SocioMembresia m in socioMembresia)
-            {
-                Socio socio = null;
-                if (!mapSocio.ContainsKey(m.Socio.Id))
-                {
-                    socio = BuscarSocioEnLista(lista, m.Socio.Id);
-                    mapSocio.Add(m.Socio.Id, socio);
-                }
-                else
-                {
-                    socio = mapSocio[m.Socio.Id];
-                }
-
-
-                Membresia mem = BuscarMembresiaEnLista(membresia, m.IdMembresia);
-                if (socio != null && mem != null)
-                {
-                    socio.Membresias.Add(mem);
-                }
-                else
-                {
-                    throw new Exception("Base de datos inconsisitente");
-                }
-            }
+            //foreach (SocioMembresia m in socioMembresia)
+            //{
+            //    Socio socio = null;
+            //    if (!mapSocio.ContainsKey(m.Socio.Id))
+            //    {
+            //        socio = BuscarSocioEnLista(lista, m.Socio.Id);
+            //        mapSocio.Add(m.Socio.Id, socio);
+            //    }
+            //    else
+            //    {
+            //        socio = mapSocio[m.Socio.Id];
+            //    }
 
 
-            foreach (SocioActividad sa in socioActividades)
-            {
-                Socio socio = mapSocio.ContainsKey(sa.IdSocio) ? mapSocio[sa.IdSocio] : null;
+            //    Membresia mem = BuscarMembresiaEnLista(membresia, m.IdMembresia);
+            //    if (socio != null && mem != null)
+            //    {
+            //        socio.Membresias.Add(mem);
+            //    }
+            //    else
+            //    {
+            //        throw new Exception("Base de datos inconsisitente");
+            //    }
+            //}
 
-                Actividad actividad =
-                    Facade.ActividadesClub.ContainsKey(sa.IdActividad) ? Facade.ActividadesClub[sa.IdActividad] :
-                     null;
+
+            //foreach (SocioActividad sa in socioActividades)
+            //{
+            //    Socio socio = mapSocio.ContainsKey(sa.IdSocio) ? mapSocio[sa.IdSocio] : null;
+
+            //    Actividad actividad =
+            //        Facade.ActividadesClub.ContainsKey(sa.IdActividad) ? Facade.ActividadesClub[sa.IdActividad] :
+            //         null;
 
 
-                if (socio != null && actividad != null)
-                {
-                    socio.ActividadSocios.Add(new ActividadSocio
-                    {
-                        Actividad = actividad,
-                        Socio = socio,
-                        Fecha = sa.Fecha
-                    });
-                }
-                else
-                {
-                    throw new Exception("Base de datos inconsisitente");
-                }
-            }
+            //    if (socio != null && actividad != null)
+            //    {
+            //        socio.ActividadSocios.Add(new ActividadSocio
+            //        {
+            //            Actividad = actividad,
+            //            Socio = socio,
+            //            Fecha = sa.Fecha
+            //        });
+            //    }
+            //    else
+            //    {
+            //        throw new Exception("Base de datos inconsisitente");
+            //    }
+            //}
 
-            return lista;
+            return FabricaRepositorios.ObtenerRepoSocios().Listar();
         }
 
         private Membresia BuscarMembresiaEnLista(List<Membresia> membresia, int idMembresia)

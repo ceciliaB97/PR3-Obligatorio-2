@@ -17,9 +17,25 @@ namespace Repositorios
 
         public DbSet<Actividad> Actividades { get; set; }
 
+        public DbSet<Configuration> Configuracion { get; set; }
+
+        public DbSet<Horario> Horarios { get; set; }
+        public DbSet<ActividadSocio> ActividadSocios { get; set; }
+
+
         public ClubContext() : base(SQLADOHelper.GetConnectionString())
         {
 
         }
+
+
+        //protected override void OnModelCreating(DbModelBuilder modelBuilder)
+        //{
+        //    modelBuilder.Entity<Horario>()
+        //    .HasIndex(p => new { p.DiaSemana, p.Hora,p.Actividad }).IsUnique();
+
+        //    modelBuilder.Entity<ActividadSocio>()
+        //        .HasIndex(p => new { p.Actividad, p.Socio, p.Fecha }).IsUnique();
+        //}
     }
 }

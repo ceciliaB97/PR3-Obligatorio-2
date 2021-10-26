@@ -18,9 +18,12 @@ namespace ClubDeportivo
             FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);
             RouteConfig.RegisterRoutes(RouteTable.Routes);
             BundleConfig.RegisterBundles(BundleTable.Bundles);
+
+
             var repoConfig = FabricaRepositorios.ObtenerRepoConfig();
-            Configuration configuration =  repoConfig.Buscar(1);
-            Facade.Configuration = configuration;
+            repoConfig.Precarga();
+
+            Facade.Configuration = repoConfig.GetConfiguration();
             //agregar precarga de usuarios
             Facade.PrecargaUsuarios();
             //agregar precarga de actividades, con socios con horarios ya cargados
