@@ -40,6 +40,11 @@ namespace Dominio
         public bool Active { get; set; }
 
        
+        public Membresia()
+        {
+            Socios = new List<Socio>();
+            Actividades = new List<Actividad>();
+        }
         
         
 
@@ -57,10 +62,7 @@ namespace Dominio
             return ActivaEsteMes;
         }
 
-        public Membresia()
-        {
-
-        }
+        
         public Membresia(int id, int mes, int anio, DateTime fechaPago) //int idSocio, 
         {
             Id = id;

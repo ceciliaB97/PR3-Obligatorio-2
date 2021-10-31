@@ -60,6 +60,7 @@ namespace Auxiliar
             m.FechaPago = DateTime.Now;
             m.Anio = m.FechaPago.Value.Year;
             m.Mes = m.FechaPago.Value.Month;
+         
             //Aqui se hace el alta de la membresia y al mismo tiempo se le asigna al socio indicado
             return FabricaRepositorios.ObtenerRepoMembresia().Alta(idSocio, m);
         }
@@ -411,6 +412,26 @@ namespace Auxiliar
                 Socio socio = ru.BuscarPorCedula(cedulaSocio);
 
                 return socio.TotalAPagarMensualidad(Facade.Configuration);
+
+            }
+            catch (Exception ex)
+            {
+                return -1;
+
+            }
+        }
+
+        public int ObtenerAntiguedadSocio(int cedula)
+        {
+            try
+            {
+                IRepoSocios ru = FabricaRepositorios.ObtenerRepoSocios();                
+                // Configuration config = repoConfig.Buscar(1);
+
+
+                Socio socio = ru.BuscarPorCedula(cedula);
+
+                return socio.CalcularAntiguedad();
 
             }
             catch (Exception ex)

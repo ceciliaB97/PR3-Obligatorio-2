@@ -284,16 +284,18 @@ namespace ClubDeportivo.Controllers
                     ViewBag.Message = "La cantidad de actividades es incorrecta, debe ser entre 8 y 60";
                     return View("Error");
                 }
-
+                c.Precio =(decimal) c.calcularPagoFinal(Facade.Configuration);
+                //c.Precio = (decimal)Facade.Instance.PagarMensualidadSocio((int)cedula);
                 int idCuponera = f1.AltaMembresia(cedula, c);
                 Cuponera cuponera = (Cuponera)f1.BuscarMembresia(idCuponera);
                 //agregar mensaje de success
                 return View(cuponera);
+
             }
 
         }
 
-
+       
         public ActionResult CreatePaseLibre(decimal cedula)
         {
             if (Session["LogueadoMail"] == null && Session["Logueado"] == null)
@@ -302,6 +304,7 @@ namespace ClubDeportivo.Controllers
             }
             else
             {
+                ViewBag.Antiguedad = Facade.Instance.ObtenerAntiguedadSocio((int)cedula);
                 return View(new PaseLibre());
             }
 
@@ -315,6 +318,9 @@ namespace ClubDeportivo.Controllers
             }
             else
             {
+                int antiguedadSocio = Facade.Instance.ObtenerAntiguedadSocio((int) cedula);
+                p.Precio = (decimal) p.calcularPagoFinal(Facade.Configuration, antiguedadSocio);
+                //p.Precio = (decimal) Facade.Instance.PagarMensualidadSocio((int)cedula);
                 int idPaseLibre = f1.AltaMembresia(cedula, p);
                 PaseLibre paselibre = (PaseLibre)f1.BuscarMembresia(idPaseLibre);
                 //agregar mensaje de success

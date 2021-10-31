@@ -135,16 +135,34 @@ namespace Dominio
             return result;
         }
 
+        private int DiffMonths(DateTime start, DateTime end)
+        {
+            int months = 0;
+            DateTime tmp = start;
+
+            while (tmp < end)
+            {
+                months++;
+                tmp = tmp.AddMonths(1);
+            }
+
+            return months;
+        }
 
         public double TotalAPagarMensualidad(Configuration config)
         {
             double result = 0;
-            foreach (Membresia m in Membresias)
-            {
-                result += m.calcularPagoFinal(config);
-            }
+            int antiguedad = DiffMonths(FechaIngreso, DateTime.Now);
+            Membresia m = Membresias.SingleOrDefault(e => e.Active);
+               if (m != null)
+                {
+                    result += m.calcularPagoFinal(config, antiguedad);
+                }                
+            
 
             return result;
         }
+
+       
     }
 }
