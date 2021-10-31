@@ -21,5 +21,12 @@ namespace Dominio
 
 		[Required]
 		public virtual Socio Socio { get; set; }
+
+		public ActividadSocio(DateTime fecha, Actividad actividad, Socio socio)
+        {
+			Fecha = fecha;
+			Actividad = actividad;
+			Socio = socio;
+        }
 	}
 }

@@ -47,6 +47,10 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\CryptoUtils\CryptoUtils.csproj">
+      <Project>{7f135640-9e8c-446d-97bb-eadecb1a4c3c}</Project>
+      <Name>CryptoUtils</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Datos\Repositorios.csproj">
       <Project>{130fd1ea-40eb-431b-885a-c26553f9f385}</Project>
       <Name>Repositorios</Name>

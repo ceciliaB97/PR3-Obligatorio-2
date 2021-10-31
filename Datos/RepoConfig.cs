@@ -130,9 +130,5 @@ namespace Repositorios
 			return null;
 		}
 
-        bool IRepositorio<Configuration>.Alta(Configuration t)
-        {
-            throw new NotImplementedException();
-        }
     }
 }

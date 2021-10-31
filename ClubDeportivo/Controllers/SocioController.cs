@@ -37,7 +37,7 @@ namespace ClubDeportivo.Controllers
             else
             {
                 Socio s = Facade.Instance.BuscarSocio(id);
-                s = Facade.Instance.ActualizarSocio(s);
+                //s = Facade.Instance.ActualizarSocio(s);
                 int edadSocio = DateTime.Now.Year - s.FechaNacimiento.Year;
                 ViewBag.ActividadesDelDia = Facade.Instance.GetActividadesDia(edadSocio);
 
@@ -88,8 +88,8 @@ namespace ClubDeportivo.Controllers
                 // TODO: Add insert logic here
                 if (Socio.ValidarDatos(socio))
                 {
-                    bool crearSocio = f1.AltaSocio(socio);
-                    if (crearSocio)
+                    int crearSocio = f1.AltaSocio(socio);
+                    if (crearSocio != -1)
                     {
                         ViewBag.Message = "El socio se ha creado exitosamente";
                         return View("Success");
@@ -286,17 +286,9 @@ namespace ClubDeportivo.Controllers
                 }
 
                 int idCuponera = f1.AltaMembresia(cedula, c);
-                var cuponera = (Cuponera)f1.BuscarMembresia(idCuponera);
-
-
-                if (cuponera.FechaPago == null)
-                {
-                    return RedirectToAction("RealizarPagoCuponera", new { id = cuponera.Id });
-                }
-                else
-                {
-                    return View(cuponera);
-                }
+                Cuponera cuponera = (Cuponera)f1.BuscarMembresia(idCuponera);
+                //agregar mensaje de success
+                return View(cuponera);
             }
 
         }
@@ -324,18 +316,9 @@ namespace ClubDeportivo.Controllers
             else
             {
                 int idPaseLibre = f1.AltaMembresia(cedula, p);
-                var paselibre = (PaseLibre)f1.BuscarMembresia(idPaseLibre);
-
-                if (paselibre.FechaPago == null)
-                {
-                    paselibre.FechaPago = DateTime.Now;
-                    //return RedirectToAction("RealizarPagoLibre", new { id = paselibre.Id });
-                    return RedirectToAction("RealizarPagoLibre", new { id = paselibre.Id });
-                }
-                else
-                {
-                    return View(paselibre);
-                }
+                PaseLibre paselibre = (PaseLibre)f1.BuscarMembresia(idPaseLibre);
+                //agregar mensaje de success
+                return View(paselibre);
 
             }
 
@@ -417,7 +400,7 @@ namespace ClubDeportivo.Controllers
                 if (cuponera.FechaPago == null)
                 {
                     ViewBag.Message = "Pago realizado exitosamente";
-                    bool res = f1.ModificacionFechaPagoHoyMembresia(cuponera);
+                    //bool res = f1.ModificacionFechaPagoHoyMembresia(cuponera);
                     f1.ListaroActualizarSocios();
                 }
                 else
@@ -456,7 +439,7 @@ namespace ClubDeportivo.Controllers
                 if (paselibre.FechaPago == null)
                 {
                     ViewBag.Message = "Pago realizado exitosamente";
-                    bool res = f1.ModificacionFechaPagoHoyMembresia(paselibre);
+                    //bool res = f1.ModificacionFechaPagoHoyMembresia(paselibre);
                     f1.ListaroActualizarSocios();
                 }
                 else
@@ -470,7 +453,7 @@ namespace ClubDeportivo.Controllers
         }
 
         public ActionResult MostrarIngresosSocio(decimal cedula, DateTime? start, DateTime? end)
-		{
+        {
 
             if (Session["LogueadoMail"] == null && Session["Logueado"] == null)
             {
@@ -480,7 +463,7 @@ namespace ClubDeportivo.Controllers
             {
                 ViewBag.Cedula = cedula;
                 if (start == null || !start.HasValue || end == null || !end.HasValue)
-				{
+                {
                     var _now = DateTime.Now;
                     var _nowNextMonth = _now.AddMonths(1);
                     ViewBag.Datos = Facade.Instance.GetActividadSocioRango(cedula, new DateTime(_now.Year, _now.Month, 1),
@@ -489,15 +472,15 @@ namespace ClubDeportivo.Controllers
 
                 }
                 else
-				{
-                    ViewBag.Datos = Facade.Instance.GetActividadSocioRango(cedula, start.Value,end.Value
+                {
+                    ViewBag.Datos = Facade.Instance.GetActividadSocioRango(cedula, start.Value, end.Value
                        );
                 }
-                
-                
+
+
                 return View();
             }
-       }
+        }
 
 
 

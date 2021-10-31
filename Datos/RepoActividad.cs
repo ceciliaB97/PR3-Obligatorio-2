@@ -306,9 +306,5 @@ namespace Repositorios
 			return null;
 		}
 
-        bool IRepositorio<Actividad>.Alta(Actividad t)
-        {
-            throw new NotImplementedException();
-        }
     }
 }

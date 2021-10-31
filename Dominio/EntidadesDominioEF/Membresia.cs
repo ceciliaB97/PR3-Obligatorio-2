@@ -33,9 +33,11 @@ namespace Dominio
 
         public decimal Precio { get; set; }
 
-        public virtual List<Socio> Socio { get; set; }
+        public virtual List<Socio> Socios { get; set; }
 
         public virtual List<Actividad> Actividades { get; set; }
+        [Required]
+        public bool Active { get; set; }
 
        
         

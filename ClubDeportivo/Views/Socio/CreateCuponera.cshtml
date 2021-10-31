@@ -13,40 +13,25 @@
     <div class="form-horizontal">
         <h4>Cuponera</h4>
         @*<div>
-            @if (Model.FechaPago == null && Model.Id > 0)
-            {
-                @Html.ActionLink("PAGAR", "RealizarPagoCuponera", new { id = Model.Id })
-            }
-        </div>*@
+                @if (Model.FechaPago == null && Model.Id > 0)
+                {
+                    @Html.ActionLink("PAGAR", "RealizarPagoCuponera", new { id = Model.Id })
+                }
+            </div>*@
         <hr />
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-        <div class="form-group">
-            @Html.LabelFor(model => model.Nombre, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.Nombre, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.Nombre, "", new { @class = "text-danger" })
-            </div>
-        </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.Descipcion, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.Descipcion, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.Descipcion, "", new { @class = "text-danger" })
-            </div>
-        </div>
 
         @*<div class="form-group">
-            @Html.LabelFor(model => model.FechaPago, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                <input class="form-control" type="datetime-local" data-val="true" data-val-required="The DateUploaded field is required."
-                       name="FechaPago" />
-                @Html.ValidationMessageFor(model => model.FechaPago, "", new { @class = "text-danger" })
-            </div>
-        </div>*@
+                @Html.LabelFor(model => model.FechaPago, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    <input class="form-control" type="datetime-local" data-val="true" data-val-required="The DateUploaded field is required."
+                           name="FechaPago" />
+                    @Html.ValidationMessageFor(model => model.FechaPago, "", new { @class = "text-danger" })
+                </div>
+            </div>*@
 
         <div class="form-group">
-            @Html.LabelFor(model => model.Active, htmlAttributes: new { @class = "control-label col-md-2", @readonly="readonly" })
+            @Html.LabelFor(model => model.Active, htmlAttributes: new { @class = "control-label col-md-2", @readonly = "readonly" })
             <div class="col-md-10">
                 <div class="checkbox">
                     @Html.EditorFor(model => model.Active)
@@ -66,16 +51,26 @@
         <div class="form-group">
             @Html.LabelFor(model => model.CantActividades, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.CantActividades, new { htmlAttributes = new { @class = "form-control"} })
+                @Html.EditorFor(model => model.CantActividades, new { htmlAttributes = new { @class = "form-control" } })
                 @Html.ValidationMessageFor(model => model.CantActividades, "", new { @class = "text-danger" })
             </div>
         </div>
 
+        <div>
+            <strong>Pago final $</strong>@Model.calcularPagoFinal(Auxiliar.Facade.Configuration)
+        </div>
+
         <div class="form-group">
             <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="Create" class="btn btn-default"/>
+                <input type="submit" value="Confirmar Pago" class="btn btn-default" />
             </div>
         </div>
+        @if (Model.FechaPago != null)
+        {
+            <p>Membresia creada exitosamente.</p>
+        }
+
+
     </div>
 }
 

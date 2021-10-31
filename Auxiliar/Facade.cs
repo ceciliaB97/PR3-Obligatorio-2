@@ -56,14 +56,12 @@ namespace Auxiliar
             IRepoMembresia rm = FabricaRepositorios.ObtenerRepoMembresia();
             IRepoSocios rs = FabricaRepositorios.ObtenerRepoSocios();
             int idSocio = rs.BuscarPorCedula(cedula).Id;
-            //Aqui se hace el alta de la membresia y al mismo tiempo se le asigna al socio indicado
-            int idMembresia = FabricaRepositorios.ObtenerRepoMembresia().Alta(idSocio, m);
-            //se agrega la membresia a la lista del socio
 
-            Socio s = rs.BuscarPorCedula(cedula);
-            Membresia mem = rm.Buscar(idMembresia);
-            s.Membresias.Add(mem);
-            return idMembresia;
+            m.FechaPago = DateTime.Now;
+            m.Anio = m.FechaPago.Value.Year;
+            m.Mes = m.FechaPago.Value.Month;
+            //Aqui se hace el alta de la membresia y al mismo tiempo se le asigna al socio indicado
+            return FabricaRepositorios.ObtenerRepoMembresia().Alta(idSocio, m);
         }
 
         public List<ActividadSocio> GetActividadSocioRango(decimal cedula, DateTime start, DateTime end)
@@ -107,11 +105,6 @@ namespace Auxiliar
         {
             IRepoMembresia rm = FabricaRepositorios.ObtenerRepoMembresia();
             return rm.Baja(id);
-        }
-
-        public Membresia ModificacionMembresia(Membresia m)
-        {
-            return FabricaRepositorios.ObtenerRepoMembresia().Modificacion(m);
         }
 
         public bool ModificacionFechaPagoHoyMembresia(Membresia m)
@@ -167,10 +160,8 @@ namespace Auxiliar
             return new Actividad();
         }
 
-        public bool AltaSocio(Socio socio)
+        public int AltaSocio(Socio socio)
         {
-            bool existe = false;
-
             if (Socio.ValidarDatos(socio))
             {
                 IRepoSocios rs = FabricaRepositorios.ObtenerRepoSocios();
@@ -183,10 +174,10 @@ namespace Auxiliar
                     Activo = true
                 };
 
-                existe = rs.Alta(s);
+                return rs.Alta(s);
             }
 
-            return existe;
+            return -1;
         }
 
         public bool BajaSocio(int id)
@@ -369,8 +360,9 @@ namespace Auxiliar
         public bool AltaUsuario(string email, string contrasenia)
         {
             IRepoUsuario ru = FabricaRepositorios.ObtenerRepoUsuarios();
+            string passEncriptada = CryptoUtils.Crypto.Encrypt(contrasenia);
 
-            bool existe = ru.buscarLogin(email, contrasenia);
+            bool existe = ru.buscarLogin(email, passEncriptada);
 
             if (!existe)
             {
@@ -394,8 +386,8 @@ namespace Auxiliar
         public bool LoginUsuario(string mail, string password)
         {
             IRepoUsuario ru = FabricaRepositorios.ObtenerRepoUsuarios();
-
-            bool existe = ru.buscarLogin(mail, password);
+            string contraEncriptada = CryptoUtils.Crypto.Encrypt(password);
+            bool existe = ru.buscarLogin(mail, contraEncriptada);
 
             return existe;
         }

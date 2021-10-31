@@ -29,11 +29,11 @@ namespace Dominio
         
         
         //[ForeignKey("IdMembresia")]
-        public virtual List<Membresia> Membresias { get; set; }
+        public List<Membresia> Membresias { get; set; }
 
 
         //[ForeignKey("IdActividad")]
-        public virtual List<ActividadSocio> ActividadSocios { get; set; }
+        public List<ActividadSocio> ActividadSocios { get; set; }
 
         public bool Activo { get; set; }
         public Socio()

@@ -186,8 +186,6 @@
     <Content Include="Views\Socio\Delete.cshtml" />
     <Content Include="Views\Socio\Edit.cshtml" />
     <Content Include="Views\Socio\BuscarPorCedula.cshtml" />
-    <Content Include="Views\Socio\PagoMensualidadCuponera.cshtml" />
-    <Content Include="Views\Socio\PagoMensualidadPaseLibre.cshtml" />
     <Content Include="Views\Membresia\MostrarPagoCuponera.cshtml" />
     <Content Include="Views\Membresia\MostrarPagoPaseLibre.cshtml" />
     <Content Include="Views\Membresia\DetalleCuponera.cshtml" />
@@ -199,8 +197,6 @@
     <Content Include="Views\Socio\ListarMCuponeraPorSocioId.cshtml" />
     <Content Include="Views\Home\Success.cshtml" />
     <Content Include="Views\Home\Error.cshtml" />
-    <Content Include="Views\Socio\RealizarPagoCuponera.cshtml" />
-    <Content Include="Views\Socio\RealizarPagoLibre.cshtml" />
     <Content Include="Views\Socio\Error.cshtml" />
     <Content Include="Views\Socio\Success.cshtml" />
     <Content Include="Views\Socio\Create.cshtml" />

@@ -53,53 +53,53 @@ namespace ClubDeportivo.Controllers
 
         }
 
-        public ActionResult RealizarPagoCuponera(int id)
-        {
-            Cuponera cuponera = (Cuponera)f1.BuscarMembresia(id);
-            if (Session["LogueadoMail"] == null && Session["Logueado"] == null)
-            {
-                return RedirectToAction("Index", "Login");
-            }
-            else
-            {
-                if (cuponera.FechaPago == null)
-                {
-                    ViewBag.FechaPago = DateTime.Today;
-                    bool res = f1.ModificacionFechaPagoHoyMembresia(cuponera);
-                }
-                else
-                {
-                    ViewBag.Mensaje = "Pago ya ha sido realizado";
-                }
+        //public ActionResult RealizarPagoCuponera(int id)
+        //{
+        //    Cuponera cuponera = (Cuponera)f1.BuscarMembresia(id);
+        //    if (Session["LogueadoMail"] == null && Session["Logueado"] == null)
+        //    {
+        //        return RedirectToAction("Index", "Login");
+        //    }
+        //    else
+        //    {
+        //        if (cuponera.FechaPago == null)
+        //        {
+        //            ViewBag.FechaPago = DateTime.Today;
+        //            bool res = f1.ModificacionFechaPagoHoyMembresia(cuponera);
+        //        }
+        //        else
+        //        {
+        //            ViewBag.Mensaje = "Pago ya ha sido realizado";
+        //        }
 
-                return View(cuponera);
-            }
+        //        return View(cuponera);
+        //    }
 
-        }
+        //}
 
-        public ActionResult RealizarPagoLibre(int id)
-        {
-            PaseLibre paselibre = (PaseLibre)f1.BuscarMembresia(id);
-            if (Session["LogueadoMail"] == null && Session["Logueado"] == null)
-            {
-                return RedirectToAction("Index", "Login");
-            }
-            else
-            {
-                if (paselibre.FechaPago == null)
-                {
-                    ViewBag.FechaPago = DateTime.Today;
-                    bool res = f1.ModificacionFechaPagoHoyMembresia(paselibre);
-                }
-                else
-                {
-                    ViewBag.Mensaje = "Pago ya ha sido realizado";
-                }
+        //public ActionResult RealizarPagoLibre(int id)
+        //{
+        //    PaseLibre paselibre = (PaseLibre)f1.BuscarMembresia(id);
+        //    if (Session["LogueadoMail"] == null && Session["Logueado"] == null)
+        //    {
+        //        return RedirectToAction("Index", "Login");
+        //    }
+        //    else
+        //    {
+        //        if (paselibre.FechaPago == null)
+        //        {
+        //            ViewBag.FechaPago = DateTime.Today;
+        //            bool res = f1.ModificacionFechaPagoHoyMembresia(paselibre);
+        //        }
+        //        else
+        //        {
+        //            ViewBag.Mensaje = "Pago ya ha sido realizado";
+        //        }
 
-                return View(paselibre);
-            }
+        //        return View(paselibre);
+        //    }
 
-        }
+        //}
 
     }
 }

@@ -12,11 +12,11 @@
     <hr />
     <dl class="dl-horizontal">
         <dt>
-            @Html.DisplayNameFor(model => model.IdSocio)
+            @Html.DisplayNameFor(model => model.Id)
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.IdSocio)
+            @Html.DisplayFor(model => model.Id)
         </dd>
 
         <dt>
@@ -70,7 +70,7 @@
             <h4>Actividades del Dia</h4>
             <select id="dropDownActividadesDia" onchange="actualizarLinkIngresoAct()">
                 <option>Seleccionar actividad</option>
-                @foreach (Dominio.ActividadHora actividad in ViewBag.ActividadesDelDia)
+                @foreach (Dominio.ActividadHorarioDTO actividad in ViewBag.ActividadesDelDia)
                 {
                     <option value="@actividad.Id|@actividad.Hora">@actividad.Id | @actividad.Nombre | @actividad.Hora</option>
                 }
@@ -78,11 +78,11 @@
             </select>
             <br />
 
-            <a id="linkIngActividad" href="~/Socio/IngresoSocioActividad?idSocio=@Model.IdSocio&idActividad=-999&hora=-888" style="display:none">Ingresar Actividad</a>
+            <a id="linkIngActividad" href="~/Socio/IngresoSocioActividad?Id=@Model.Id&idActividad=-999&hora=-888" style="display:none">Ingresar Actividad</a>
 
             @*@Html.ActionLink("Ingresar Actividad", "IngresoSocioActividad", new
                {
-                   idSocio = Model.IdSocio,
+                   Id = Model.Id,
                    idActividad = -999
                }, new { htmlAttributes = new { id = "linkIngActividad", @style = "display:none" } });*@
 
@@ -95,13 +95,13 @@
     @Html.ActionLink("Back to List", "Index") |
     @if (!Model.ValidarPagoMembresia())
     {
-        @Html.ActionLink("Crear Cuponera", "CreateCuponera", new { cedula = Model.Cedula }) @:|
-        @Html.ActionLink("Crear Pase Libre", "CreatePaseLibre", new { cedula = Model.Cedula }) @:|
+        @Html.ActionLink("Pagar Cuponera", "CreateCuponera", new { cedula = Model.Cedula }) @:|
+        @Html.ActionLink("Pagar Pase Libre", "CreatePaseLibre", new { cedula = Model.Cedula }) @:|
 
     }
 
-    @Html.ActionLink("Listar Cuponeras", "ListarMCuponeraPorSocioId", new { id = Model.IdSocio }) |
-    @Html.ActionLink("Listar Pases Libres", "ListarPaseLibrePorSocioId", new { id = Model.IdSocio })
+    @Html.ActionLink("Listar Cuponeras", "ListarMCuponeraPorSocioId", new { id = Model.Id }) |
+    @Html.ActionLink("Listar Pases Libres", "ListarPaseLibrePorSocioId", new { id = Model.Id })
 
 </p>
 
