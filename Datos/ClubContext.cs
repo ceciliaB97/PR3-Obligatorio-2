@@ -23,7 +23,7 @@ namespace Repositorios
         public DbSet<ActividadSocio> ActividadSocios { get; set; }
 
 
-        public ClubContext() : base(SQLADOHelper.GetConnectionString())
+        public ClubContext() : base(RepoHelper.GetConnectionString())
         {
 
         }

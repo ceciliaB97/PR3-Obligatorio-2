@@ -45,11 +45,11 @@
         <form action="~/Socio/DeleteDetalleInactivar" method="post">
             <dl class="dl-horizontal">
                 <dt>
-                    @Html.DisplayNameFor(model => model.IdSocio)
+                    @Html.DisplayNameFor(model => model.Id)
                 </dt>
 
                 <dd>
-                    @Html.DisplayFor(model => model.IdSocio)
+                    @Html.DisplayFor(model => model.Id)
                 </dd>
 
                 <dt>
@@ -98,8 +98,8 @@
                         @Html.ActionLink("Crear Pase Libre", "CreatePaseLibre", new { cedula = Model.Cedula }) @:|
 
                     }
-                    @Html.ActionLink("Listar Cuponeras", "ListarMCuponeraPorSocioId", new { id = Model.IdSocio }) |
-                    @Html.ActionLink("Listar Pases Libres", "ListarPaseLibrePorSocioId", new { id = Model.IdSocio })
+                    @Html.ActionLink("Listar Cuponeras", "ListarMCuponeraPorSocioId", new { id = Model.Id }) |
+                    @Html.ActionLink("Listar Pases Libres", "ListarPaseLibrePorSocioId", new { id = Model.Id })
                 </dd>
             </dl>
         </form>

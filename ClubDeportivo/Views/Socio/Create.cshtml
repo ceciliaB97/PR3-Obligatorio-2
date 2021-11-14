@@ -40,8 +40,7 @@
                     <div class="form-group">
                         @Html.LabelFor(model => model.FechaNacimiento, htmlAttributes: new { @class = "control-label col-md-2" })
                         <div class="col-md-10">
-                            @*@Html.EditorFor(model => model.FechaNacimiento, new { htmlAttributes = new { @class = "form-control" } })*@
-                            <input class="form-control" type="datetime-local" data-val="true" data-val-required="The DateUploaded field is required."
+                            <input class="form-control" type="date" data-val="true" data-val-required="The DateUploaded field is required."
                                    name="FechaNacimiento" />
                             @Html.ValidationMessageFor(model => model.FechaNacimiento, "", new { @class = "text-danger" })
                         </div>

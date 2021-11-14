@@ -11,8 +11,6 @@ namespace Repositorios
 {
 	public class RepoConfig : IRepoConfig
 	{
-		private const string TABLE_NAME = "Configuration";
-
 
 		public void Precarga()
 		{

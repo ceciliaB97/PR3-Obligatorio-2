@@ -12,9 +12,6 @@
             @Html.DisplayNameFor(model => model.Nombre)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Descipcion)
-        </th>
-        <th>
             @Html.DisplayNameFor(model => model.FechaPago)
         </th>
         <th>
@@ -33,9 +30,6 @@
                 @Html.DisplayFor(modelItem => item.Nombre)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.Descipcion)
-            </td>
-            <td>
                 @if (item.FechaPago != null)
                 {
                     @Html.DisplayFor(modelItem => item.FechaPago)
@@ -47,13 +41,13 @@
             <td>
                 @Html.DisplayFor(modelItem => item.TipoMembresia)
             </td>
-            <td>
+            @*<td>
                 @if (item.FechaPago == null)
                 {
                     @Html.ActionLink("PAGAR", "RealizarPagoLibre", new { id = item.Id })
                 }
 
-            </td>
+            </td>*@
         </tr>
     }
 

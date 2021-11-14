@@ -11,60 +11,17 @@ namespace Repositorios
 {
 	public class RepoActividad : IRepoActividad
 	{
-		private const string TABLE_NAME = "Actividad";
-
 
 		public int Alta(Actividad t)
 		{
-			//			string query = @"INSERT INTO [dbo].[Actividad]
-			//			([Nombre]
-			//			,[Minedad]
-			//			,[Maxedad]
-			//			,[Active]
-			//			,[Cupos])
-			//			 VALUES
-			//				   (@nombre
-			//				   ,@minedad
-			//				   ,@maxedad
-			//				   ,@active
-			//				   ,@cupos);
-			//select SCOPE_IDENTITY() from [dbo].[Actividad]
-			//GO";
+			using (ClubContext db = new ClubContext())
+			{
+				db.Actividades.Add(t);
+				
+				db.SaveChanges();
 
-			//			var connStr = SQLADOHelper.GetConnectionString();
-
-			//			int result = -1;
-
-			//			using (var connection = new SqlConnection(connStr))
-			//			{
-			//				try
-			//				{
-			//					connection.Open();
-			//					var command = new SqlCommand(query, connection);
-			//					command.Parameters.AddWithValue("@nombre", t.Nombre);
-			//					command.Parameters.AddWithValue("@minedad", t.EdadMin);
-			//					command.Parameters.AddWithValue("@maxedad", t.EdadMax);
-			//					command.Parameters.AddWithValue("@active", t.Active);
-			//					command.Parameters.AddWithValue("@cupos", t.Cupos);
-
-			//					object val = command.ExecuteScalar();
-
-			//					result = val != null ? Convert.ToInt32(val) : -1;
-
-			//				}
-			//				catch (Exception ex)
-			//				{
-			//					throw ex;
-			//				}
-			//				finally
-			//				{
-			//					connection.Close();
-			//				}
-
-			//			}
-
-			//			return result;
-			return -1;
+				return t.Id;
+			}
 		}
 
 		public bool Baja(int id)

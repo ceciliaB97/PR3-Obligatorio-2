@@ -11,8 +11,6 @@ namespace Repositorios
 {
     public class RepoMembresia : IRepoMembresia
     {
-        private const string TABLE_NAME = "Membresia";
-
 
         public int Alta(int idSocio, Membresia t)
         {
@@ -38,7 +36,8 @@ namespace Repositorios
             using (ClubContext db = new ClubContext())
             {
                 Membresia m = db.Membresias.Find(id);
-                
+                db.Membresias.Remove(m);
+                db.SaveChanges();
                 
             }
                 return false;

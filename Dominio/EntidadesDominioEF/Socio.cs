@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
@@ -29,13 +30,15 @@ namespace Dominio
         
         
         //[ForeignKey("IdMembresia")]
-        public List<Membresia> Membresias { get; set; }
+        public virtual List<Membresia> Membresias { get; set; }
 
 
         //[ForeignKey("IdActividad")]
-        public List<ActividadSocio> ActividadSocios { get; set; }
+        public virtual List<ActividadSocio> ActividadSocios { get; set; }
 
-        public bool Activo { get; set; }
+        [Required, DefaultValue(true)]
+
+        public bool Activo { get; set; } = true;
         public Socio()
         {
             Membresias = new List<Membresia>();
@@ -49,6 +52,8 @@ namespace Dominio
             NombreApellido = nombreApellido;
             FechaNacimiento = fechaNacimiento;
             FechaIngreso = DateTime.Now;
+            Membresias = new List<Membresia>();
+            ActividadSocios = new List<ActividadSocio>();
         }
 
         public static int CalcularEdad(DateTime nacimiento)
@@ -123,6 +128,8 @@ namespace Dominio
             DateTime mesAnio = DateTime.Now;
             int mes = mesAnio.Month;
             int anio = mesAnio.Year;
+
+            
 
             foreach (Membresia m in Membresias)
             {

@@ -11,7 +11,6 @@ namespace Repositorios
 {
     public class RepoSocios : IRepoSocios
     {
-        private const string TABLE_NAME = "Socio";
         //TODO
         //public IngresosFechaData
 
@@ -55,7 +54,9 @@ namespace Repositorios
         {
             using (ClubContext db = new ClubContext())
             {
-                Socio s = db.Socios.Find(id);
+                Socio s = db.Socios.Include("Membresias").Include("ActividadSocios").
+                    Where(x => x.Id == id).SingleOrDefault();
+                // Find(id);
                 //Accedemos a las listas por el lazy loading, para que cargue las dependencias, si no, no se cargan
                 //List<Membresia> mAux = s.Membresias;
                 //List<ActividadSocio> acAux = s.ActividadSocios;
@@ -67,7 +68,7 @@ namespace Repositorios
         {
             using (ClubContext db = new ClubContext())
             {
-                return db.Socios.Where(s => s.Cedula == cedulaSocio).SingleOrDefault();
+                return db.Socios.Include("Membresias").Include("ActividadSocios").Where(s => s.Cedula == cedulaSocio).SingleOrDefault();
             }
         }
 

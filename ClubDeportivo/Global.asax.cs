@@ -24,8 +24,11 @@ namespace ClubDeportivo
             repoConfig.Precarga();
 
             Facade.Configuration = repoConfig.GetConfiguration();
+            
+            
             //agregar precarga de usuarios
-            Facade.PrecargaUsuarios();
+            Facade.PrecargaDatos();
+
             //agregar precarga de actividades, con socios con horarios ya cargados
 
 

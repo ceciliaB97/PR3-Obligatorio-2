@@ -58,7 +58,7 @@
     <Compile Include="RepoUsuario.cs" />
     <Compile Include="RepoActividad.cs" />
     <Compile Include="RepoMembresia.cs" />
-    <Compile Include="SQLADOHelper.cs" />
+    <Compile Include="RepoHelper.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\CryptoUtils\CryptoUtils.csproj">

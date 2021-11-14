@@ -393,30 +393,38 @@ namespace Auxiliar
             return existe;
         }
 
-        public static void PrecargaUsuarios()
-        {
-            IRepoUsuario ru = FabricaRepositorios.ObtenerRepoUsuarios();
 
-            ru.Precarga();
-        }
 
-        public double PagarMensualidadSocio(int cedulaSocio)
+        public Membresia PagarMensualidadSocio(int cedulaSocio,Membresia membresia)
         {
             try
             {
-                IRepoSocios ru = FabricaRepositorios.ObtenerRepoSocios();
-                IRepoConfig repoConfig = FabricaRepositorios.ObtenerRepoConfig();
-                // Configuration config = repoConfig.Buscar(1);
+               
+                //p.Precio = (decimal) Facade.Instance.PagarMensualidadSocio((int)cedula);
+                //int idPaseLibre = facade.AltaMembresia(cedula, p);
+                //PaseLibre paselibre = (PaseLibre)facade.BuscarMembresia(idPaseLibre);
+
+                if (membresia.TipoMembresia == "paselibre")
+                {
+                    int antiguedadSocio = ObtenerAntiguedadSocio(cedulaSocio);
+                    membresia.Precio = (decimal)membresia.calcularPagoFinal(Facade.Configuration, antiguedadSocio);
+                }
+                else
+                {
+                    membresia.Precio = (decimal)membresia.calcularPagoFinal(Facade.Configuration);
+
+                }
+
+                int idMem = AltaMembresia(cedulaSocio, membresia);
+                return BuscarMembresia(idMem);
+                
 
 
-                Socio socio = ru.BuscarPorCedula(cedulaSocio);
-
-                return socio.TotalAPagarMensualidad(Facade.Configuration);
 
             }
             catch (Exception ex)
             {
-                return -1;
+                return null;
 
             }
         }
@@ -447,6 +455,16 @@ namespace Auxiliar
             return s;
         }
 
+
+        public static void PrecargaDatos()
+        {
+            IRepoUsuario ru = FabricaRepositorios.ObtenerRepoUsuarios();
+
+            ru.Precarga();
+
+            RepoHelper.PreCargaDatosPrueba();
+
+        }
 
         //TODO Migrar para usar entityFramework
         //public ActividadSocioDTOResult IngresarSocioActividad(ActividadSocioDTO actividadSocio)

@@ -11,7 +11,7 @@ namespace ClubDeportivo.Controllers
     public class SocioController : Controller
     {
 
-        Facade f1 = Facade.Instance;
+        Facade facade = Facade.Instance;
 
         // GET: Socio
         public ActionResult Index()
@@ -22,7 +22,7 @@ namespace ClubDeportivo.Controllers
             }
             else
             {
-                return View(f1.ListaroActualizarSocios());
+                return View(facade.ListaroActualizarSocios());
             }
 
         }
@@ -88,7 +88,7 @@ namespace ClubDeportivo.Controllers
                 // TODO: Add insert logic here
                 if (Socio.ValidarDatos(socio))
                 {
-                    int crearSocio = f1.AltaSocio(socio);
+                    int crearSocio = facade.AltaSocio(socio);
                     if (crearSocio != -1)
                     {
                         ViewBag.Message = "El socio se ha creado exitosamente";
@@ -227,6 +227,10 @@ namespace ClubDeportivo.Controllers
             }
             else
             {
+
+                //TODO
+                //CAMBIAR ESO PARA USAR WEBAPI
+
                 // Create a client object with the given client endpoint configuration.
                 //ServiceClient clubSolisClient = new ServiceClient("BasicHttpBinding_IService");
 
@@ -270,7 +274,7 @@ namespace ClubDeportivo.Controllers
 
         }
         [HttpPost]
-        public ActionResult CreateCuponera(decimal cedula, Cuponera c)
+        public ActionResult CreateCuponera(int cedula, Cuponera cupo)
         {
             if (Session["LogueadoMail"] == null && Session["Logueado"] == null)
             {
@@ -279,24 +283,34 @@ namespace ClubDeportivo.Controllers
             else
             {
 
-                if (c.CantActividades < 8 || c.CantActividades > 60)
+                if (cupo.CantActividades < 8 || cupo.CantActividades > 60)
                 {
                     ViewBag.Message = "La cantidad de actividades es incorrecta, debe ser entre 8 y 60";
                     return View("Error");
                 }
-                c.Precio =(decimal) c.calcularPagoFinal(Facade.Configuration);
-                //c.Precio = (decimal)Facade.Instance.PagarMensualidadSocio((int)cedula);
-                int idCuponera = f1.AltaMembresia(cedula, c);
-                Cuponera cuponera = (Cuponera)f1.BuscarMembresia(idCuponera);
-                //agregar mensaje de success
-                return View(cuponera);
+
+                Socio socio = facade.BuscarSocioPorCedula(cedula);
+
+                if (!socio.ValidarPagoMembresia())
+                {
+
+                    Cuponera cuponera = (Cuponera)facade.PagarMensualidadSocio(cedula, cupo);
+
+                    //agregar mensaje de success
+                    return View(cuponera);
+                }
+                else
+				{
+                    ViewBag.Message = "Cuponera ya esta paga";
+                    return View("Error");
+                }
 
             }
 
         }
 
        
-        public ActionResult CreatePaseLibre(decimal cedula)
+        public ActionResult CreatePaseLibre(int cedula)
         {
             if (Session["LogueadoMail"] == null && Session["Logueado"] == null)
             {
@@ -310,7 +324,7 @@ namespace ClubDeportivo.Controllers
 
         }
         [HttpPost]
-        public ActionResult CreatePaseLibre(decimal cedula, PaseLibre p)
+        public ActionResult CreatePaseLibre(int cedula, PaseLibre pase)
         {
             if (Session["LogueadoMail"] == null && Session["Logueado"] == null)
             {
@@ -318,13 +332,19 @@ namespace ClubDeportivo.Controllers
             }
             else
             {
-                int antiguedadSocio = Facade.Instance.ObtenerAntiguedadSocio((int) cedula);
-                p.Precio = (decimal) p.calcularPagoFinal(Facade.Configuration, antiguedadSocio);
-                //p.Precio = (decimal) Facade.Instance.PagarMensualidadSocio((int)cedula);
-                int idPaseLibre = f1.AltaMembresia(cedula, p);
-                PaseLibre paselibre = (PaseLibre)f1.BuscarMembresia(idPaseLibre);
-                //agregar mensaje de success
-                return View(paselibre);
+                Socio socio = facade.BuscarSocioPorCedula(cedula);
+
+                if (!socio.ValidarPagoMembresia())
+                {
+                    PaseLibre paseLibre = (PaseLibre)facade.PagarMensualidadSocio(cedula, pase);
+                    //agregar mensaje de success
+                    return View(paseLibre);
+                }
+                else
+                {
+                    ViewBag.Message = "Pase libre ya esta pago";
+                    return View("Error");
+                }
 
             }
 
@@ -333,46 +353,34 @@ namespace ClubDeportivo.Controllers
 
         public ActionResult ListarPaseLibrePorSocioId(int id)
         {
-            Socio socio = f1.BuscarSocio(id);
+            Socio socio = facade.BuscarSocio(id);
             if (Session["LogueadoMail"] == null && Session["Logueado"] == null)
             {
                 return RedirectToAction("Index", "Login");
             }
             else
             {
-                List<Membresia> lista = f1.ListarMembresiasPorSocioId(socio);
-                List<PaseLibre> ilista = new List<PaseLibre>();
-                foreach (var item in lista)
-                {
-                    if (item.TipoMembresia == "paselibre")
-                    {
-                        ilista.Add((PaseLibre)item);
-                    }
-                }
-                return View(ilista);
+                List<PaseLibre> lista = facade.ListarMembresiasPorSocioId(socio).
+                    Where(item => item.TipoMembresia == "paselibre").Cast<PaseLibre>().ToList();
+
+                return View(lista);
             }
 
         }
 
         public ActionResult ListarMCuponeraPorSocioId(int id)
         {
-            Socio socio = f1.BuscarSocio(id);
+            Socio socio = facade.BuscarSocio(id);
             if (Session["LogueadoMail"] == null && Session["Logueado"] == null)
             {
                 return RedirectToAction("Index", "Login");
             }
             else
             {
-                List<Membresia> lista = f1.ListarMembresiasPorSocioId(socio);
-                List<Cuponera> ilista = new List<Cuponera>();
-                foreach (var item in lista)
-                {
-                    if (item.TipoMembresia == "cuponera")
-                    {
-                        ilista.Add((Cuponera)item);
-                    }
-                }
-                return View(ilista);
+                List<Cuponera> lista = facade.ListarMembresiasPorSocioId(socio).
+                    Where(item => item.TipoMembresia == "cuponera").Cast<Cuponera>().ToList();
+
+                return View(lista);
             }
 
         }
@@ -380,7 +388,7 @@ namespace ClubDeportivo.Controllers
         [HttpGet]
         public ActionResult RealizarPagoCuponera(int id)
         {
-            Cuponera cuponera = (Cuponera)f1.BuscarMembresia(id);
+            Cuponera cuponera = (Cuponera)facade.BuscarMembresia(id);
             if (Session["LogueadoMail"] == null && Session["Logueado"] == null)
             {
                 return RedirectToAction("Index", "Login");
@@ -407,7 +415,7 @@ namespace ClubDeportivo.Controllers
                 {
                     ViewBag.Message = "Pago realizado exitosamente";
                     //bool res = f1.ModificacionFechaPagoHoyMembresia(cuponera);
-                    f1.ListaroActualizarSocios();
+                    facade.ListaroActualizarSocios();
                 }
                 else
                 {
@@ -421,7 +429,7 @@ namespace ClubDeportivo.Controllers
         [HttpGet]
         public ActionResult RealizarPagoLibre(int id)
         {
-            PaseLibre paselibre = (PaseLibre)f1.BuscarMembresia(id);
+            PaseLibre paselibre = (PaseLibre)facade.BuscarMembresia(id);
             if (Session["LogueadoMail"] == null && Session["Logueado"] == null)
             {
                 return RedirectToAction("Index", "Login");
@@ -446,7 +454,7 @@ namespace ClubDeportivo.Controllers
                 {
                     ViewBag.Message = "Pago realizado exitosamente";
                     //bool res = f1.ModificacionFechaPagoHoyMembresia(paselibre);
-                    f1.ListaroActualizarSocios();
+                    facade.ListaroActualizarSocios();
                 }
                 else
                 {

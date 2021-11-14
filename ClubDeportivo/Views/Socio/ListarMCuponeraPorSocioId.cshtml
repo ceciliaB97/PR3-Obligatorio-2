@@ -11,9 +11,9 @@
         <th>
             @Html.DisplayNameFor(model => model.Nombre)
         </th>
-        <th>
+        @*<th>
             @Html.DisplayNameFor(model => model.Descipcion)
-        </th>
+        </th>*@
         <th>
             @Html.DisplayNameFor(model => model.FechaPago)
         </th>
@@ -34,9 +34,9 @@
     <td>
         @Html.DisplayFor(modelItem => item.Nombre)
     </td>
-    <td>
+    @*<td>
         @Html.DisplayFor(modelItem => item.Descipcion)
-    </td>
+    </td>*@
     <td>
         @if (item.FechaPago != null)
         {
@@ -52,13 +52,13 @@
     <td>
         @Html.DisplayFor(modelItem => item.CantActividades)
     </td>
-    <td>
+    @*<td>
         @if (item.FechaPago == null)
         {
             @Html.ActionLink("PAGAR", "RealizarPagoCuponera", new { id = item.Id })
         }
 
-    </td>
+    </td>*@
 </tr>
 }
 

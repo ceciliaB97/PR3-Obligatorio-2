@@ -14,9 +14,10 @@ namespace Repositorios
         public void Precarga()
         {
             List<Usuario> lu = new List<Usuario>();
-            //CryptoUtils.Crypto.Encrypt("1234a");
-            Usuario u1 = new Usuario("bernardo@mail.com", CryptoUtils.Crypto.Encrypt("1234a"));
-            Usuario u2 = new Usuario("carlos@mail.com", CryptoUtils.Crypto.Encrypt("1234a"));
+
+            string pass = CryptoUtils.Crypto.Encrypt("1234a");
+            Usuario u1 = new Usuario("bernardo@mail.com",pass);
+            Usuario u2 = new Usuario("carlos@mail.com", pass);
 
             lu.Add(u1);
             lu.Add(u2);
@@ -41,77 +42,9 @@ namespace Repositorios
 
                 }
 
-                //prueba precarga datos
-                //            var h = new Horario
-                //            {
-                //                DiaSemana = DayOfWeek.Monday,
-                //                Hora = 7
-                //            };
-                //            context.Horarios.Add(h);
+				
 
-                //            var a1 = new Actividad
-                //            {
-                //                ActividadHorarios = new List<Horario>
-                //                {
-                //                  h 
-                //                },
-                //                EdadMinima = 7,
-                //                EdadMaxima = 70,
-                //                Cupos = 20,
-                //                Nombre = "Natacion"
-                //            };
-
-                //            context.Actividades.Add(a1);
-
-                //            var m1 = new Cuponera
-                //            {
-                //                CantActividades = 10,
-                //                Anio = 2021,
-                //                Mes = 7,
-                //                FechaPago = null,
-                //                Precio = 800,
-                //                TipoMembresia = "cuponera",
-                //                Actividades = new List<Actividad>
-                //	{
-                //                    a1
-                //	}
-                //            };
-                //            var m2 = new PaseLibre
-                //            {
-                //                Anio = 2021,
-                //                Mes = 8,
-                //                FechaPago = null,
-                //                Precio = 2000,
-                //                TipoMembresia = "paselibre",
-                //                Actividades = new List<Actividad>
-                //	{
-                //                    a1
-                //	}
-                //            };
-
-                //            context.Membresias.Add(m1);
-                //            context.Membresias.Add(m2);
-
-                //var socio = new Socio()
-                //{
-                //	Activo = true,
-                //	Cedula = 45042994,
-                //	ActividadSocios = new List<ActividadSocio>(),
-                //	FechaIngreso = DateTime.Now,
-                //	FechaNacimiento = DateTime.Now.AddYears(-30),
-                //	NombreApellido = "Sebastian Piazza",
-                //	Membresias = new List<Membresia>
-                //	{
-                //		m1,
-                //		m2
-                //	}
-
-                //};
-
-
-                //context.Socios.Add(socio); 
-
-                int filasAfectadas = context.SaveChanges();
+				int filasAfectadas = context.SaveChanges();
             }
         }
 

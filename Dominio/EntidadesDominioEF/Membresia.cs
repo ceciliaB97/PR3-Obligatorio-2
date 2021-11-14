@@ -18,7 +18,7 @@ namespace Dominio
 
         //[Required, ReadOnly(true), ForeignKey("Socio")]
         //public int IdSocio { get; set; }
-
+        public string Nombre { get; set; }
         public int Mes { get; set; }
         [Required, Display(Name = "Año"), ReadOnly(true)]
         public int Anio { get; set; }
@@ -36,8 +36,9 @@ namespace Dominio
         public virtual List<Socio> Socios { get; set; }
 
         public virtual List<Actividad> Actividades { get; set; }
-        [Required]
-        public bool Active { get; set; }
+
+        [Required, DefaultValue(true)]
+        public bool Active { get; set; } = true;
 
        
         public Membresia()

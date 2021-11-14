@@ -32,10 +32,17 @@
                         <li>@Html.ActionLink("Listar Socios", "Index", "Socio")</li>
                         <li>@Html.ActionLink("Baja de Socio", "Delete", "Socio")</li>
                         <li>@Html.ActionLink("Buscar por cedula", "BuscarPorCedula", "Socio")</li>
+
+
+
+
                         <li>@Html.ActionLink("Cerrar Sesion", "Logout", "Login")</li>
 
                         <li><a>@Session["LogueadoMail"]</a></li>
                     }
+
+
+                    <li>@Html.ActionLink("Importar", "ImportarDatos", "Import")</li>
                 </ul>
             </div>
         </div>
