@@ -12,17 +12,20 @@
 
 @using (Html.BeginForm("ImportarDatos", "Import", FormMethod.Post))
 {
-    <div>
-        <select id="tipoImport" name="tipoImport">
-            <option value="0">Usuarios</option>
-            <option value="1">Actividades</option>
+<div>
+    <select id="tipoImport" name="tipoImport">
+        <option value="0">Usuarios</option>
+        <option value="1">Actividades</option>
 
-        </select>
+    </select>
 
-        <br />
-        <input type="submit" value="Upload" />
-        @ViewBag.Message
-    </div>
+    <br />
+    <input type="submit" value="Importar" />
+    <br />
+    <br />
+
+    @ViewBag.Message
+</div>
     <br /><br />
     @ViewBag.Content
 }

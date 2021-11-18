@@ -371,7 +371,7 @@ namespace Auxiliar
                 Usuario u = new Usuario()
                 {
                     Mail = email,
-                    Password = contrasenia
+                    Password = passEncriptada
                 };
 
                 bool res = ru.Alta(u);

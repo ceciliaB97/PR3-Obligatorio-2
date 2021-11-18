@@ -42,6 +42,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="CsvHelper.cs" />
     <Compile Include="FabricaRepositorios.cs" />
     <Compile Include="Facade.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

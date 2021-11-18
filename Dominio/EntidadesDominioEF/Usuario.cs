@@ -16,6 +16,8 @@ namespace Dominio
         [Required, EmailAddress]
         public string Mail { set; get; }
         [Required, MinLength(6), Display(Name = "Contraseña")]
+        [RegularExpression(@"^(?=.*[a-z])(?=.*[A-Z])(?=.*\d).{6,}$", //password debe contener minusculas, mayusculas y digitos
+         ErrorMessage = "Password must meet requirements")]
         public string Password { get; set; }
 
         public Usuario()
