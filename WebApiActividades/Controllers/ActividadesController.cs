@@ -19,12 +19,15 @@ namespace WebApiActividades.Controllers
 
 
         // GET: odata/ActividadWebApi/texto
-        //        //buscar actividad por texto incluido en el nombre
-        [Route("api/ActividadWebApiController/GetActividadNombre/{texto}")]
+        //buscar actividad por texto incluido en el nombre
+        [Route("api/Actividades/GetByName/{texto}")]
         [AcceptVerbs("GET")]
-        public IHttpActionResult GetActividadNombre(string texto)
+        public IHttpActionResult GetByName(string texto)
         {
-            var actvidades = db.Actividades.Where(c => c.Nombre.Contains(texto)).ToList();
+            var actvidades = db.Actividades.Where(c => c.Nombre.Contains(texto))
+                .OrderBy(a => a.Nombre)
+                .ThenBy(a => a.ActividadHorarios.OrderBy(h => h.DiaSemana)
+                .ThenBy(h => h.Hora)).ToList();
 
             if (actvidades.Count == 0)
             {
@@ -37,12 +40,15 @@ namespace WebApiActividades.Controllers
         }
 
         // GET: odata/ActividadWebApi/minEdad
-        //        //buscar actividad por cota minima de edad
-        [Route("api/ActividadWebApiController/GetActividadMinEdad/{minEdad}")]
+        //buscar actividad por cota minima de edad
+        [Route("api/Actividades/GetByMinAge/{minEdad}")]
         [AcceptVerbs("GET")]
-        public IHttpActionResult GetActividadMinEdad(int minEdad)
+        public IHttpActionResult GetByMinAge(int minEdad)
         {
-            var actvidades = db.Actividades.Where(c => c.EdadMinima == minEdad).ToList();
+            var actvidades = db.Actividades.Where(c => c.EdadMinima == minEdad)
+                .OrderBy(a => a.Nombre)
+                .ThenBy(a => a.ActividadHorarios.OrderBy(h => h.DiaSemana)
+                .ThenBy(h => h.Hora)).ToList();
 
             if (actvidades.Count == 0)
             {
@@ -55,12 +61,15 @@ namespace WebApiActividades.Controllers
         }
 
         // GET: odata/ActividadWebApi(5)/ActividadHorarios/diaHora
-        //        //buscar actividad por cota minima de edad
-        [Route("api/ActividadWebApiController/GetActividadHorariosDiaHora/{dia}{hora}")]
+        //buscar actividad por cota minima de edad
+        [Route("api/Actividades/GetByActivityHours/{dia}/{hora}")]
         [AcceptVerbs("GET")]
-        public IHttpActionResult GetActividadHorariosDiaHora(DayOfWeek dia, int hora)
+        public IHttpActionResult GetByActivityHours(DayOfWeek dia, int hora)
         {
-            var actvidades = db.Actividades.Where(a => a.ActividadHorarios.Any(ah => ah.DiaSemana == dia && ah.Hora == hora)).ToList();
+            var actvidades = db.Actividades.Where(a => a.ActividadHorarios.Any(ah => ah.DiaSemana == dia && ah.Hora == hora))
+                .OrderBy(a => a.Nombre)
+                .ThenBy(a => a.ActividadHorarios.OrderBy(h => h.DiaSemana)
+                .ThenBy(h => h.Hora)).ToList();
 
             if (actvidades.Count == 0)
             {
