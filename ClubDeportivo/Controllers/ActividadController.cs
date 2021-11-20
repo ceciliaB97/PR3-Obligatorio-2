@@ -3,17 +3,108 @@ using Dominio;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net.Http;
 using System.Web;
 using System.Web.Mvc;
+using System.Configuration;
+using System.Web.Configuration;
+using System.Threading.Tasks;
+using Newtonsoft.Json;
 
 namespace ClubDeportivo.Controllers
 {
     public class ActividadController : Controller
     {
+        public global::System.Object ConfigurationManager { get; private set; }
+
         // GET: Actividad
         public ActionResult Index()
         {
             return View();
+        }
+
+        // GET: Actividad/GetByName/{name}
+        public ActionResult GetByName(String name)
+        {
+            List<Actividad> actividades = null;
+            HttpClient proxy = new HttpClient();
+            //string ubicacionServicio = ConfigurationManager.AppSettings["ServidorWebApi"];
+            string ubicacionServicio = WebConfigurationManager.AppSettings["ServidorWebApi"];
+            string url = ubicacionServicio + "actividades/GetByName/" + name;
+            Uri uri = new Uri(url);
+
+            Task<HttpResponseMessage> tarea1 = proxy.GetAsync(uri);
+            tarea1.Wait();
+
+            if (tarea1.Result.IsSuccessStatusCode)
+            {
+                Task<string> tarea2 = tarea1.Result.Content.ReadAsStringAsync();
+                tarea2.Wait();
+                string json = tarea2.Result;
+                actividades = JsonConvert.DeserializeObject<List<Actividad>>(json);
+            }
+            else
+            {
+                ViewBag.Error = "Hubo un problema al buscar las actividades (" + tarea1.Result.StatusCode + ")";
+            }
+
+            return View(actividades);
+        }
+
+        // GET: Actividad/GetByMinAge/{age}
+        public ActionResult GetByMinAge(int age)
+        {
+            List<Actividad> actividades = null;
+            HttpClient proxy = new HttpClient();
+            //string ubicacionServicio = ConfigurationManager.AppSettings["ServidorWebApi"];
+            string ubicacionServicio = WebConfigurationManager.AppSettings["ServidorWebApi"];
+            string url = ubicacionServicio + "actividades/GetByMinAge/" + age;
+            Uri uri = new Uri(url);
+
+            Task<HttpResponseMessage> tarea1 = proxy.GetAsync(uri);
+            tarea1.Wait();
+
+            if (tarea1.Result.IsSuccessStatusCode)
+            {
+                Task<string> tarea2 = tarea1.Result.Content.ReadAsStringAsync();
+                tarea2.Wait();
+                string json = tarea2.Result;
+                actividades = JsonConvert.DeserializeObject<List<Actividad>>(json);
+            }
+            else
+            {
+                ViewBag.Error = "Hubo un problema al buscar las actividades (" + tarea1.Result.StatusCode + ")";
+            }
+
+            return View(actividades);
+        }
+
+        // GET: Actividad/GetBySchedule/{day}/{hour}
+        public ActionResult GetBySchedule(DayOfWeek day, int hour)
+        {
+            List<Actividad> actividades = null;
+            HttpClient proxy = new HttpClient();
+            //string ubicacionServicio = ConfigurationManager.AppSettings["ServidorWebApi"];
+            string ubicacionServicio = WebConfigurationManager.AppSettings["ServidorWebApi"];
+            string url = ubicacionServicio + "actividades/GetBySchedule/" + $"{day}/{hour}";
+            Uri uri = new Uri(url);
+
+            Task<HttpResponseMessage> tarea1 = proxy.GetAsync(uri);
+            tarea1.Wait();
+
+            if (tarea1.Result.IsSuccessStatusCode)
+            {
+                Task<string> tarea2 = tarea1.Result.Content.ReadAsStringAsync();
+                tarea2.Wait();
+                string json = tarea2.Result;
+                actividades = JsonConvert.DeserializeObject<List<Actividad>>(json);
+            }
+            else
+            {
+                ViewBag.Error = "Hubo un problema al buscar las actividades (" + tarea1.Result.StatusCode + ")";
+            }
+
+            return View(actividades);
         }
 
         // GET: Actividad/Details/5

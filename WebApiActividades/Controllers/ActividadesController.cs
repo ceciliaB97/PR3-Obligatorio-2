@@ -62,9 +62,9 @@ namespace WebApiActividades.Controllers
 
         // GET: odata/ActividadWebApi(5)/ActividadHorarios/diaHora
         //buscar actividad por cota minima de edad
-        [Route("api/Actividades/GetByActivityHours/{dia}/{hora}")]
+        [Route("api/Actividades/GetBySchedule/{dia}/{hora}")]
         [AcceptVerbs("GET")]
-        public IHttpActionResult GetByActivityHours(DayOfWeek dia, int hora)
+        public IHttpActionResult GetBySchedule(DayOfWeek dia, int hora)
         {
             var actvidades = db.Actividades.Where(a => a.ActividadHorarios.Any(ah => ah.DiaSemana == dia && ah.Hora == hora))
                 .OrderBy(a => a.Nombre)

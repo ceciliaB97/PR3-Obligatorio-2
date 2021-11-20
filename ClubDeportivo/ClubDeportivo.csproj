@@ -150,6 +150,7 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\ActividadController.cs" />
+    <None Include="Controllers\ActividadController.cs-bk" />
     <Compile Include="Controllers\ConfigurationController.cs" />
     <Compile Include="Controllers\ImportController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
@@ -232,7 +233,6 @@
     <Folder Include="App_Data\" />
     <Folder Include="Export\" />
     <Folder Include="Models\" />
-    <Folder Include="Views\Actividad\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />
