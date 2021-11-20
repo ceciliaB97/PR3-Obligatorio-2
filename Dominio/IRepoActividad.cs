@@ -11,5 +11,6 @@ namespace Dominio
 	{
 		List<Horario> ListarHorariosActividad(int idActividad);
 		ActividadSocio BuscarSocioActividad(int idSocio, int idActividad);
-	}
+        Actividad Buscar(string nombre);
+    }
 }

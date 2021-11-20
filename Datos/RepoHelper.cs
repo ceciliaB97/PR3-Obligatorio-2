@@ -14,25 +14,25 @@ namespace Repositorios
 
 		private static string _connStr ="";
 
-		//SEBASTIAN
-		private static readonly string _userid = "sa";
-		private static readonly string _psw = "ah!9(xNbonq-hLk4Gm;Ez(dEe-RvB.tJ";
-		private static readonly string _server = "localhost\\SQLEXPRESS";
-		private static readonly string _database = "ObligatorioP3_GestionClub";
+        //SEBASTIAN
+        //private static readonly string _userid = "sa";
+        //private static readonly string _psw = "ah!9(xNbonq-hLk4Gm;Ez(dEe-RvB.tJ";
+        //private static readonly string _server = "localhost\\SQLEXPRESS";
+        //private static readonly string _database = "ObligatorioP3_GestionClub";
 
-		//BERNARDO
-		//private static readonly string _userid = "sa";
-		//private static readonly string _psw = "1234";
-		//private static readonly string _server = "LAPTOP-H8N5UBOT";
-		//private static readonly string _database = "ObligatorioP3_GestionClub";
+        //BERNARDO
+        //private static readonly string _userid = "sa";
+        //private static readonly string _psw = "1234";
+        //private static readonly string _server = "LAPTOP-H8N5UBOT";
+        //private static readonly string _database = "ObligatorioP3_GestionClub";
 
-		////CECILIA
-		//private static readonly string _userid = "sa";
-		//private static readonly string _psw = "1234";
-		//private static readonly string _server = "localhost";
-		//private static readonly string _database = "ObligatorioP3_GestionClub";
+        ////CECILIA
+        private static readonly string _userid = "sa";
+        private static readonly string _psw = "1234";
+        private static readonly string _server = "localhost";
+        private static readonly string _database = "ObligatorioP3_GestionClub";
 
-		public static void PreCargaDatosPrueba()
+        public static void PreCargaDatosPrueba()
 		{
 			try
 			{

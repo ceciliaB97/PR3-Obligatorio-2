@@ -15,12 +15,12 @@ namespace Dominio
         [Required]
         public int Id { get; set; }
 
-        [Required, Range(20, 500)]
+        [Required]
         public int Cupos { get; set; }
-        [Required, Range(4,89)]
+        [Required, Range(3,90)]
         public int EdadMinima { get; set; }
 
-        [Required, Range(4, 89)]
+        [Required, Range(3, 90)]
         public int EdadMaxima { get; set; }
 
         public virtual List<Horario> ActividadHorarios { get; set; }
@@ -36,8 +36,10 @@ namespace Dominio
 
             return false;
         }
-
+        [Index(IsUnique=true), MaxLength(30)]
         public string Nombre { get; set; }
+
+        public bool Active { get; set; }
 
         //[ForeignKey("Horario")]
         //public int IdHorario { get; set; }

@@ -1,17 +1,17 @@
-Id|Nombre|Minedad|Maxedad|Active|Cupos
-3|Natacion|3|80|True|600
-4|Pesas|12|40|True|300
-5|Crossfit|15|77|True|100
-7|Spinning|18|80|True|100
-8|Karate|12|55|True|350
-9|Yoga|15|80|True|250
-10|Pilas|15|55|True|360
-11|Futbol|5|50|True|199
-12|Handball|15|45|True|139
-13|Voleyball|18|50|True|160
-14|Basketball|18|50|True|175
-15|Gim.Artistica|10|24|True|95
-16|Futbol Kids|5|16|True|200
-17|Handball Kids|8|16|True|140
-18|Voleyball Kids|8|16|True|160
-19|Basketball Kids|8|16|True|175
+Id|Nombre|Minedad|Maxedad|Active|Cupos|Horario
+3|Natacion|3|80|True|600|0/15,3/9,5/18,4/21
+4|Pesas|12|40|True|300|0/15,3/9,5/18,4/21
+5|Crossfit|15|77|True|100|0/15,3/9,5/18,4/21
+7|Spinning|18|80|True|100|0/15,3/9,5/18,4/21
+8|Karate|12|55|True|350|0/15,3/9,5/18,4/21
+9|Yoga|15|80|True|250|0/15,3/9,5/18,4/21
+10|Pilas|15|55|True|360|0/15,3/9,5/18,4/21
+11|Futbol|5|50|True|199|0/15,3/9,5/18,4/21
+12|Handball|15|45|True|139|0/15,3/9,5/18,4/21
+13|Voleyball|18|50|True|160|0/15,3/9,5/18,4/21
+14|Basketball|18|50|True|175|0/15,3/9,5/18,4/21
+15|Gim.Artistica|10|24|True|95|0/15,3/9,5/18,4/21
+16|Futbol Kids|5|16|True|200|0/15,3/9,5/18,4/21
+17|Handball Kids|8|16|True|140|0/15,3/9,5/18,4/21
+18|Voleyball Kids|8|16|True|160|0/15,3/9,5/18,4/21
+19|Basketball Kids|8|16|True|175|0/15,3/9,5/18,4/21

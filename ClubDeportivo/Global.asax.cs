@@ -31,8 +31,6 @@ namespace ClubDeportivo
 
             //agregar precarga de actividades, con socios con horarios ya cargados
 
-
-            Facade.ActualizarActividadesClub();
            
         }
     }

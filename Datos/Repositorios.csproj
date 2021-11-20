@@ -52,6 +52,23 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ClubContext.cs" />
+    <Compile Include="Migrations\202110312010513_InitialCreate.cs" />
+    <Compile Include="Migrations\202110312010513_InitialCreate.designer.cs">
+      <DependentUpon>202110312010513_InitialCreate.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202111200001528_corrida-1-cecilia.cs" />
+    <Compile Include="Migrations\202111200001528_corrida-1-cecilia.designer.cs">
+      <DependentUpon>202111200001528_corrida-1-cecilia.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202111200026592_cecilia-2.cs" />
+    <Compile Include="Migrations\202111200026592_cecilia-2.designer.cs">
+      <DependentUpon>202111200026592_cecilia-2.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202111200043124_cecilia-3.cs" />
+    <Compile Include="Migrations\202111200043124_cecilia-3.designer.cs">
+      <DependentUpon>202111200043124_cecilia-3.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="RepoConfig.cs" />
     <Compile Include="RepoSocios.cs" />
@@ -73,6 +90,20 @@
   <ItemGroup>
     <None Include="app.config" />
     <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Migrations\202110312010513_InitialCreate.resx">
+      <DependentUpon>202110312010513_InitialCreate.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202111200001528_corrida-1-cecilia.resx">
+      <DependentUpon>202111200001528_corrida-1-cecilia.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202111200026592_cecilia-2.resx">
+      <DependentUpon>202111200026592_cecilia-2.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202111200043124_cecilia-3.resx">
+      <DependentUpon>202111200043124_cecilia-3.cs</DependentUpon>
+    </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">

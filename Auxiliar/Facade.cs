@@ -13,9 +13,6 @@ namespace Auxiliar
     public class Facade
     {
         public static Configuration Configuration { get; set; }
-        public static Dictionary<int, Actividad> ActividadesClub { get; set; }
-        private static Dictionary<int, Socio> mapSocio;// = new Dictionary<int, Socio>();
-        private static Dictionary<int, Actividad> mapActividad;// = new Dictionary<int, Actividad>();
 
         public static Facade _instance = null;
         public static Facade Instance
@@ -28,20 +25,6 @@ namespace Auxiliar
                 }
 
                 return _instance;
-            }
-        }
-
-        public static void ActualizarActividadesClub()
-        {
-            Facade.ActividadesClub = new Dictionary<int, Actividad>();
-            IRepoActividad ra = FabricaRepositorios.ObtenerRepoActividad();
-
-            List<Actividad> actividades = ra.Listar();
-            foreach (var act in actividades)
-            {
-                act.ActividadHorarios = ra.ListarHorariosActividad(act.Id);
-
-                Facade.ActividadesClub.Add(act.Id, act);
             }
         }
 
@@ -60,13 +43,13 @@ namespace Auxiliar
             m.FechaPago = DateTime.Now;
             m.Anio = m.FechaPago.Value.Year;
             m.Mes = m.FechaPago.Value.Month;
-         
+
             //Aqui se hace el alta de la membresia y al mismo tiempo se le asigna al socio indicado
             return FabricaRepositorios.ObtenerRepoMembresia().Alta(idSocio, m);
         }
 
         public List<ActividadSocio> GetActividadSocioRango(decimal cedula, DateTime start, DateTime end)
-		{
+        {
             IRepoSocios rs = FabricaRepositorios.ObtenerRepoSocios();
             Socio s = rs.BuscarPorCedula(cedula);
             s = ActualizarSocio(s);
@@ -78,10 +61,14 @@ namespace Auxiliar
             List<ActividadHorarioDTO> result = new List<ActividadHorarioDTO>();
             DateTime _now = DateTime.Now;
 
-            foreach (Actividad actividad in ActividadesClub.Values)
+            IRepoActividad repoActividades = FabricaRepositorios.ObtenerRepoActividad();
+
+            List<Actividad> listaActividades = repoActividades.Listar();
+
+            foreach (Actividad actividad in listaActividades)
             {
 
-                if (actividad.Cupos > 0 && edadSocio >= actividad.EdadMinima && edadSocio <=actividad.EdadMaxima)
+                if (actividad.Cupos > 0 && edadSocio >= actividad.EdadMinima && edadSocio <= actividad.EdadMaxima)
                 {
                     foreach (var h in actividad.ActividadHorarios)
                     {
@@ -142,13 +129,30 @@ namespace Auxiliar
 
             try
             {
-                return FabricaRepositorios.ObtenerRepoMembresia().ListarPorSocioId(socio.Id); 
-                    //mapSocio[socio.Id].Membresias;
-            } catch(Exception err)
+                return FabricaRepositorios.ObtenerRepoMembresia().ListarPorSocioId(socio.Id);
+                //mapSocio[socio.Id].Membresias;
+            }
+            catch (Exception err)
             {
                 return new List<Membresia>();
             }
             //return mapSocio[socio.IdSocio].Membresias; //socio.Membresias;
+        }
+
+        public bool AltaActividad(Actividad actividadAux)
+        {
+            IRepoActividad repoActividad = FabricaRepositorios.ObtenerRepoActividad();
+
+            int retorno = repoActividad.Alta(actividadAux);
+
+            return retorno > 0;
+        }
+
+        public Actividad BuscarActividad(string nombre)
+        {
+            IRepoActividad repoActividad = FabricaRepositorios.ObtenerRepoActividad();
+
+            return repoActividad.Buscar(nombre);
         }
 
         public List<Actividad> ListarActividades()
@@ -395,11 +399,11 @@ namespace Auxiliar
 
 
 
-        public Membresia PagarMensualidadSocio(int cedulaSocio,Membresia membresia)
+        public Membresia PagarMensualidadSocio(int cedulaSocio, Membresia membresia)
         {
             try
             {
-               
+
                 //p.Precio = (decimal) Facade.Instance.PagarMensualidadSocio((int)cedula);
                 //int idPaseLibre = facade.AltaMembresia(cedula, p);
                 //PaseLibre paselibre = (PaseLibre)facade.BuscarMembresia(idPaseLibre);
@@ -417,7 +421,7 @@ namespace Auxiliar
 
                 int idMem = AltaMembresia(cedulaSocio, membresia);
                 return BuscarMembresia(idMem);
-                
+
 
 
 
@@ -433,7 +437,7 @@ namespace Auxiliar
         {
             try
             {
-                IRepoSocios ru = FabricaRepositorios.ObtenerRepoSocios();                
+                IRepoSocios ru = FabricaRepositorios.ObtenerRepoSocios();
                 // Configuration config = repoConfig.Buscar(1);
 
 
