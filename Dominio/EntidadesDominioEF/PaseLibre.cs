@@ -38,15 +38,24 @@ namespace Dominio
             {
                 result -= result * (config.DescuentoPaseLibre / 100);
             }
+
+            //PrecioFinal = config.CostoFijo - config.CostoFijo * (descuentoPorc); 
+            //PrecioFinal = config.CostoFijo - DescuentoSinPorc
+
+            //DescuentoSinPorc = CostoFijo - PrecioFinal;
+
+            //DescuentoSinPorc = config.CostoFijo * (descuentoPorc)
+
+
             return result;
         }
 
         public override decimal obtenerDescuento(Configuration config)
         {
             decimal costoTotal = (decimal)(config.CostoFijo);
-            decimal descuento = Math.Abs(costoTotal - Precio)/Precio;
+            decimal descuento = Math.Abs(costoTotal - Precio);
             
-            return Math.Round(descuento*100);
+            return Math.Round(descuento);
         }
     }
 }

@@ -84,7 +84,7 @@
                 Precio
             </th>
             <th>
-                Descuento
+                Monto Descuento
             </th>
             <th>
                 Socios
@@ -104,7 +104,7 @@
                     $@membresia.Precio
                 </td>
                 <td>
-                    @membresia.obtenerDescuento(Facade.Configuration)%
+                    $@membresia.obtenerDescuento(Facade.Configuration)
                 </td>
                 <td>
                     @foreach (var socio in membresia.Socios)

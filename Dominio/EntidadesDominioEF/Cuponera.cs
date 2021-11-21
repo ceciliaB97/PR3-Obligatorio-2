@@ -44,9 +44,9 @@ namespace Dominio
             decimal costoTotal =  (decimal)(config.MontoUnitarioCuponera * CantActividades);
             //Price = Costo - Descuento
 
-            decimal descuento = Math.Abs(costoTotal - Precio)/Precio;
+            decimal descuento = Math.Abs(costoTotal - Precio);
 
-            return Math.Round(descuento*100);
+            return Math.Round(descuento);
 		}
 	}
 }
