@@ -3,6 +3,10 @@
     padding-bottom: 20px;
 }
 
+h1{
+    margin-top: 50px !important;
+}
+
 /* Set padding to keep content from hitting the edges */
 .body-content {
     padding-left: 15px;

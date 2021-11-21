@@ -23,9 +23,16 @@ namespace ClubDeportivo.Controllers
             return View();
         }
 
+        [HttpGet]
         public ActionResult GetBy()
         {
             return View();
+        }
+
+        [HttpPost]
+        public ActionResult GetBy(List<Actividad> actividades)
+        {
+            return View(actividades);
         }
 
         // GET: Actividad/GetByName/{name}
@@ -53,7 +60,7 @@ namespace ClubDeportivo.Controllers
                 ViewBag.Error = "Hubo un problema al buscar las actividades (" + tarea1.Result.StatusCode + ")";
             }
 
-            return View(actividades);
+            return View("GetBy", actividades);
         }
 
         // GET: Actividad/GetByMinAge/{age}
@@ -63,7 +70,7 @@ namespace ClubDeportivo.Controllers
             HttpClient proxy = new HttpClient();
             //string ubicacionServicio = ConfigurationManager.AppSettings["ServidorWebApi"];
             string ubicacionServicio = WebConfigurationManager.AppSettings["ServidorWebApi"];
-            string url = ubicacionServicio + "actividades/GetByMinAge/" + age;
+            string url = $"{ubicacionServicio}/api/actividades/GetByMinAge/" + age;
             Uri uri = new Uri(url);
 
             Task<HttpResponseMessage> tarea1 = proxy.GetAsync(uri);
@@ -81,7 +88,7 @@ namespace ClubDeportivo.Controllers
                 ViewBag.Error = "Hubo un problema al buscar las actividades (" + tarea1.Result.StatusCode + ")";
             }
 
-            return View(actividades);
+            return View("GetBy", actividades);
         }
 
         // GET: Actividad/GetBySchedule/{day}/{hour}
@@ -91,7 +98,7 @@ namespace ClubDeportivo.Controllers
             HttpClient proxy = new HttpClient();
             //string ubicacionServicio = ConfigurationManager.AppSettings["ServidorWebApi"];
             string ubicacionServicio = WebConfigurationManager.AppSettings["ServidorWebApi"];
-            string url = ubicacionServicio + "actividades/GetBySchedule/" + $"{day}/{hour}";
+            string url = $"{ubicacionServicio}/api/actividades/GetBySchedule/{day}/{hour}";
             Uri uri = new Uri(url);
 
             Task<HttpResponseMessage> tarea1 = proxy.GetAsync(uri);
@@ -109,7 +116,7 @@ namespace ClubDeportivo.Controllers
                 ViewBag.Error = "Hubo un problema al buscar las actividades (" + tarea1.Result.StatusCode + ")";
             }
 
-            return View(actividades);
+            return View("GetBy", actividades);
         }
 
         // GET: Actividad/Details/5
