@@ -24,11 +24,12 @@ namespace WebApiActividades.Controllers
         [AcceptVerbs("GET")]
         public IHttpActionResult GetByName(string texto)
         {
-            var actvidades = db.Actividades.Where(c => c.Nombre.Contains(texto))
-                .OrderBy(a => a.Nombre)
-                .ThenBy(a => a.ActividadHorarios.OrderBy(h => h.DiaSemana)
-                .ThenBy(h => h.Hora)).ToList();
+            var actvidades = db.Actividades.Where(c => c.Nombre.ToLower().Contains(texto.ToLower()))
+                .OrderBy(a => a.Nombre).ToList();
 
+/*                .ThenBy(a => a.ActividadHorarios.OrderBy(h => h.DiaSemana)
+                .ThenBy(h => h.Hora)).ToList();
+*/
             if (actvidades.Count == 0)
             {
                 return NotFound();
@@ -46,9 +47,10 @@ namespace WebApiActividades.Controllers
         public IHttpActionResult GetByMinAge(int minEdad)
         {
             var actvidades = db.Actividades.Where(c => c.EdadMinima == minEdad)
-                .OrderBy(a => a.Nombre)
-                .ThenBy(a => a.ActividadHorarios.OrderBy(h => h.DiaSemana)
-                .ThenBy(h => h.Hora)).ToList();
+                .OrderBy(a => a.Nombre).ToList();
+
+                //.ThenBy(a => a.ActividadHorarios.OrderBy(h => h.DiaSemana)
+                //.ThenBy(h => h.Hora)).ToList();
 
             if (actvidades.Count == 0)
             {
@@ -67,17 +69,25 @@ namespace WebApiActividades.Controllers
         public IHttpActionResult GetBySchedule(DayOfWeek dia, int hora)
         {
             var actvidades = db.Actividades.Where(a => a.ActividadHorarios.Any(ah => ah.DiaSemana == dia && ah.Hora == hora))
-                .OrderBy(a => a.Nombre)
-                .ThenBy(a => a.ActividadHorarios.OrderBy(h => h.DiaSemana)
-                .ThenBy(h => h.Hora)).ToList();
+                .OrderBy(a => a.Nombre);
 
-            if (actvidades.Count == 0)
+            foreach (var a in actvidades)
+			{
+                a.ActividadHorarios = a.ActividadHorarios.OrderBy(h => h.DiaSemana)
+                .ThenBy(h => h.Hora).ToList();
+
+            }
+
+
+            var actResult = actvidades.ToList();
+
+            if (actResult.Count == 0)
             {
                 return NotFound();
             }
             else
             {
-                return Ok(actvidades);
+                return Ok(actResult);
             }
         }
 
