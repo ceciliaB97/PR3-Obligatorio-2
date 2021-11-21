@@ -38,5 +38,15 @@ namespace Dominio
 
             return result;
         }
-    }
+
+		public override decimal obtenerDescuento(Configuration config)
+		{
+            decimal costoTotal =  (decimal)(config.MontoUnitarioCuponera * CantActividades);
+            //Price = Costo - Descuento
+
+            decimal descuento = Math.Abs(costoTotal - Precio)/Precio;
+
+            return Math.Round(descuento*100);
+		}
+	}
 }

@@ -1,5 +1,5 @@
-﻿
-
+﻿@using Dominio;
+@using Auxiliar;
 <div>
     <h4>Buscar Membresias</h4>
     <hr />
@@ -84,11 +84,14 @@
                 Precio
             </th>
             <th>
+                Descuento
+            </th>
+            <th>
                 Socios
             </th>
         </tr>
 
-        @foreach (var membresia in ViewBag.lista)
+        @foreach (Membresia membresia in ViewBag.lista)
         {
             <tr>
                 <td>
@@ -99,6 +102,9 @@
                 </td>
                 <td>
                     $@membresia.Precio
+                </td>
+                <td>
+                    @membresia.obtenerDescuento(Facade.Configuration)%
                 </td>
                 <td>
                     @foreach (var socio in membresia.Socios)

@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
 
 namespace Dominio
 {
@@ -39,8 +38,15 @@ namespace Dominio
             {
                 result -= result * (config.DescuentoPaseLibre / 100);
             }
-
             return result;
+        }
+
+        public override decimal obtenerDescuento(Configuration config)
+        {
+            decimal costoTotal = (decimal)(config.CostoFijo);
+            decimal descuento = Math.Abs(costoTotal - Precio)/Precio;
+            
+            return Math.Round(descuento*100);
         }
     }
 }

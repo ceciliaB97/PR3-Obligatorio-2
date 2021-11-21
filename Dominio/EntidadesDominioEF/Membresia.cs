@@ -75,6 +75,7 @@ namespace Dominio
         // public abstract decimal CalcularPrecio();
 
         public abstract double calcularPagoFinal(Configuration config, int antiguedadSocio = 0);
+        public abstract decimal obtenerDescuento(Configuration config);
 
 
     }
