@@ -10,6 +10,7 @@ using System.Configuration;
 using System.Web.Configuration;
 using System.Threading.Tasks;
 using Newtonsoft.Json;
+using Dominio.DTO;
 
 namespace ClubDeportivo.Controllers
 {
@@ -21,6 +22,61 @@ namespace ClubDeportivo.Controllers
         public ActionResult Index()
         {
             return View();
+        }
+
+        //CAMBIAR DTO OBJ
+        // GET: Actividad/GetByName/{name}
+        public ActionResult GetBySocioIngresos(int cedula, int idActividad)
+        {
+            List<ActividadSocioIngresosDTO> horarios = null;
+            HttpClient proxy = new HttpClient();
+
+            string ubicacionServicio = WebConfigurationManager.AppSettings["ServidorWebApi"];
+            string url = $"{ubicacionServicio}/api/actividades/GetByIngresosSocio/{cedula}/{idActividad}";
+            Uri uri = new Uri(url);
+
+            Task<HttpResponseMessage> tarea1 = proxy.GetAsync(uri);
+            tarea1.Wait();
+
+            if (tarea1.Result.IsSuccessStatusCode)
+            {
+                Task<string> tarea2 = tarea1.Result.Content.ReadAsStringAsync();
+                tarea2.Wait();
+                string json = tarea2.Result;
+                horarios = JsonConvert.DeserializeObject<List<ActividadSocioIngresosDTO>>(json);
+            }
+            else
+            {
+                ViewBag.Error = "Hubo un problema al buscar los ingresos (" + tarea1.Result.StatusCode + ")";
+            }
+
+            if (horarios.Count > 0)
+            {
+                ViewBag.idActividad = horarios.First().IdActividad;
+                ViewBag.nombreActividad = horarios.First().NombreActividad;
+            }
+
+            return View("IngresosSocioActividad", horarios);
+        }
+        //terminar POST
+        [HttpGet]
+        public ActionResult IngresosSocioActividad(int id, string nombre)
+        {
+            ViewBag.idActividad = id;
+            ViewBag.nombreActividad = nombre;
+            return View();
+        }
+
+        [HttpPost]
+        public ActionResult IngresosSocioActividad(List<ActividadSocioIngresosDTO> horarios)
+        {
+            if (horarios.Count > 0)
+            {
+                ViewBag.idActividad = horarios.First().IdActividad;
+                ViewBag.nombreActividad = horarios.First().NombreActividad;
+            }
+
+            return View(horarios);
         }
 
         [HttpGet]

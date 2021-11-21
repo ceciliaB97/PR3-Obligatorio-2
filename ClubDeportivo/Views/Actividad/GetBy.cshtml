@@ -124,24 +124,28 @@
 
             @foreach (var item in Model)
             {
-                <tr>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.Cupos)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.EdadMinima)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.EdadMaxima)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.Nombre)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.Active)
-                    </td>
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Cupos)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.EdadMinima)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.EdadMaxima)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Nombre)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Active)
+            </td>
 
-                </tr>
+            <td>
+                @Html.ActionLink("Buscar Ingresos para esta actividad", "IngresosSocioActividad", new { id = item.Id, nombre = item.Nombre })
+            </td>
+
+        </tr>
             }
         </table>
     }

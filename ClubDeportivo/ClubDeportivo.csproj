@@ -167,6 +167,7 @@
     <None Include="Views\Actividad\GetBy.cshtml-bk" />
     <Content Include="Views\Membresia\GetByMonthYear.cshtml" />
     <None Include="Views\Actividad\GetByName.cshtml-bk" />
+    <Content Include="Views\Actividad\IngresosSocioActividad.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\bootstrap-cerulean.css" />

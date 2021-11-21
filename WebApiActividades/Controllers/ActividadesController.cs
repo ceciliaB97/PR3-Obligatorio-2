@@ -10,6 +10,7 @@ using System.Web.Http;
 using System.Web.Http.Description;
 using Dominio;
 using Repositorios;
+using Dominio.DTO;
 
 namespace WebApiActividades.Controllers
 {
@@ -17,6 +18,35 @@ namespace WebApiActividades.Controllers
     {
         private ClubContext db = new ClubContext();
 
+        // GET: odata/ActividadWebApi/texto
+        //buscar ingresos de socio a actividad
+        [Route("api/Actividades/GetByIngresosSocio/{cedula}/{idActividad}")]
+        [AcceptVerbs("GET")]
+        public IHttpActionResult GetByIngresosSocio(int cedula, int idActividad)
+        {
+            var horarios = db.ActividadSocios.Where(actSoc => actSoc.Socio.Cedula == cedula && actSoc.Actividad.Id == idActividad)
+                .OrderByDescending(aas => aas.Fecha)
+                .Select(actSoc => new ActividadSocioIngresosDTO
+                {
+                    CedulaSocio = actSoc.Socio.Cedula,
+                    NombreSocio = actSoc.Socio.NombreApellido,
+                    //Dia = actSoc.Fecha.day,
+                    Hora = actSoc.Fecha.Hour,
+                    IngresoOriginal = actSoc.Fecha,
+                    IdActividad = actSoc.Actividad.Id,
+                    NombreActividad = actSoc.Actividad.Nombre
+                })
+                .ToList();
+
+            if (horarios.Count == 0)
+            {
+                return NotFound();
+            }
+            else
+            {
+                return Ok(horarios);
+            }
+        }
 
         // GET: odata/ActividadWebApi/texto
         //buscar actividad por texto incluido en el nombre

@@ -1,0 +1,64 @@
+﻿@using Dominio.DTO
+<br />
+<br />
+<br />
+<h1>Buscar ingreso de Socios a @ViewBag.nombreActividad</h1>
+<div>
+    <form action="~/Actividad/GetBySocioIngresos" method="post">
+        <dl class="dl-horizontal">
+            <dt>
+                Cedula
+            </dt>
+
+            <dd>
+                <input type="number" name="cedula" />
+                <input type="hidden" name="idActividad" value="@ViewBag.idActividad" />
+            </dd>
+
+        </dl>
+
+        @using (Html.BeginForm())
+        {
+            @Html.AntiForgeryToken()
+
+            <div class="form-actions no-color">
+                <input type="submit" value="Detalle" />
+            </div>
+        }
+    </form>
+
+    @if (Model != null)
+    {
+        <table class="table">
+            <tr>
+                <th>
+                    Fecha de Ingreso
+                </th>
+                <th>
+                    Dia
+                </th>
+                <th>
+                    Hora
+                </th>
+
+            </tr>
+
+            @foreach (ActividadSocioIngresosDTO item in Model)
+            {
+                <tr>
+                    <td>
+                        @item.IngresoOriginal
+                    </td>
+                    <td>
+                        @item.IngresoOriginal.DayOfWeek.ToString()
+                    </td>
+                    <td>
+                        @item.Hora
+                    </td>
+
+                </tr>
+            }
+        </table>
+    }
+</div>
+
