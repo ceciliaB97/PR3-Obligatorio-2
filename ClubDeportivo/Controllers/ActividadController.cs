@@ -28,6 +28,7 @@ namespace ClubDeportivo.Controllers
         {
             List<Actividad> actividades = null;
             HttpClient proxy = new HttpClient();
+
             //string ubicacionServicio = ConfigurationManager.AppSettings["ServidorWebApi"];
             string ubicacionServicio = WebConfigurationManager.AppSettings["ServidorWebApi"];
             string url = ubicacionServicio + "actividades/GetByName/" + name;
@@ -108,9 +109,10 @@ namespace ClubDeportivo.Controllers
         }
 
         // GET: Actividad/Details/5
-        public ActionResult Details(int id)
+        [HttpPost]
+        public ActionResult Details(Actividad actividad)
         {
-            return View();
+            return View(actividad);
         }
 
         // GET: Actividad/Create

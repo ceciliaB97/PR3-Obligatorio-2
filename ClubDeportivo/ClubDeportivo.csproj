@@ -162,6 +162,7 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Content Include="Views\Actividad\GetBy.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\bootstrap-cerulean.css" />
