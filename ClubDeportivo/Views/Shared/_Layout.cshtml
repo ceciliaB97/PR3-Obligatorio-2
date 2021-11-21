@@ -25,6 +25,7 @@
                     {
                         <li style="color: white; text-align:center;">@Html.ActionLink("Iniciar Sesion", "Index", "Login")</li>
                     }
+                    <li>@Html.ActionLink("Importar", "ImportarDatos", "Import")</li>
                     @if (Session["Logueado"] != null && (bool)Session["Logueado"] == true)
                     {
                         <li>@Html.ActionLink("Registro de Usuario", "RegistrarUsuario", "Usuario")</li>
@@ -32,6 +33,7 @@
                         <li>@Html.ActionLink("Listar Socios", "Index", "Socio")</li>
                         <li>@Html.ActionLink("Baja de Socio", "Delete", "Socio")</li>
                         <li>@Html.ActionLink("Buscar por cedula", "BuscarPorCedula", "Socio")</li>
+                        <li>@Html.ActionLink("Buscar Membresias", "GetByMonthYear", "Membresia")</li>
                         <li>@Html.ActionLink("Buscar Actividad", "GetBy", "Actividad")</li>
 
                         <li>@Html.ActionLink("Cerrar Sesion", "Logout", "Login")</li>
@@ -39,7 +41,6 @@
                         <li><a>@Session["LogueadoMail"]</a></li>
                     }
 
-                    <li>@Html.ActionLink("Importar", "ImportarDatos", "Import")</li>
                 </ul>
             </div>
         </div>

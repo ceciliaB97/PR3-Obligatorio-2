@@ -63,7 +63,7 @@ namespace Repositorios
         {
             using (ClubContext db = new ClubContext())
             {
-                return db.Membresias.Where(m => m.Mes == month && m.Anio == year).ToList();
+                return db.Membresias.Include("Socios").Where(m => m.Mes == month && m.Anio == year).ToList(); ;
             }
         }
 

@@ -36,7 +36,8 @@ namespace ClubDeportivo.Controllers
 
             //string ubicacionServicio = ConfigurationManager.AppSettings["ServidorWebApi"];
             string ubicacionServicio = WebConfigurationManager.AppSettings["ServidorWebApi"];
-            string url = ubicacionServicio + "actividades/GetByName/" + name;
+            //string url = ubicacionServicio + "actividades/GetByName/" + name;
+            string url = "http://localhost:56697/actividades/GetByName/" + name;
             Uri uri = new Uri(url);
 
             Task<HttpResponseMessage> tarea1 = proxy.GetAsync(uri);

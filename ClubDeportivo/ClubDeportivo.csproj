@@ -165,6 +165,7 @@
     <Content Include="Views\Actividad\Details.cshtml" />
     <Content Include="Views\Actividad\GetBy.cshtml" />
     <None Include="Views\Actividad\GetBy.cshtml-bk" />
+    <Content Include="Views\Membresia\GetByMonthYear.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\bootstrap-cerulean.css" />

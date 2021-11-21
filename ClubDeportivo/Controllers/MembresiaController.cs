@@ -52,7 +52,8 @@ namespace ClubDeportivo.Controllers
             else
             {
                 List<Membresia> lista = f1.ListarMembresiasMesAnio(month, year);
-                return View(lista);
+                ViewBag.lista = lista;
+                return View();
             }
 
         }

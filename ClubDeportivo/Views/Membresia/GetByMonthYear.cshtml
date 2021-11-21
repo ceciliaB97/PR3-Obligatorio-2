@@ -1,0 +1,79 @@
+﻿
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>GetByMonthYear</title>
+</head>
+<body>
+
+
+    <div>
+        <h4>Buscar Membresias</h4>
+        <hr />
+        <form action="~/Membresia/GetByMonthYear" method="post">
+            <dl class="dl-horizontal">
+
+                <dt>
+                    Mes
+                </dt>
+
+                <dd>
+                    <input type="number" name="month" />
+                </dd>
+
+                <dt>
+                    Año
+                </dt>
+
+                <dd>
+                    <input type="number" name="year" />
+                </dd>
+
+            </dl>
+
+            @using (Html.BeginForm())
+            {
+                @Html.AntiForgeryToken()
+
+                <div class="form-actions no-color">
+                    <input type="submit" value="Detalle" />
+                </div>
+            }
+        </form>
+    </div>
+    @if (ViewBag.lista != null)
+    {
+        <div>
+            @foreach (var membresia in ViewBag.lista)
+            {
+                <!--
+                <p>
+                    Tipo de pase (libre o cuponera)
+                    Fecha de pago
+                    Monto pagado
+                    Monto de descuento aplicado.
+                    Cédula y nombre del socio que la adquirió.
+                </p>
+                    -->
+
+                <p><strong>Tipo de Membresia</strong> @membresia.TipoMembresia</p>
+                <p><strong>Fecha de Pago</strong> @membresia.FechaPago</p>
+                <p><strong>Precio</strong> $@membresia.Precio</p>
+                foreach (var socio in membresia.Socios)
+                {
+                    <p><strong>Cedula</strong> @socio.Cedula</p>
+                    <p><strong>Socio</strong> @socio.NombreApellido</p>
+                }
+                <hr />
+            }
+        </div>
+    }
+
+</body>
+</html>
