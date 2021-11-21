@@ -12,7 +12,102 @@
     <title>GetBy</title>
 </head>
 <body>
-    <div> 
+    <hr>
+    <h1>Buscar Actividad</h1>
+    <div>
+        <form action="~/Actividad/GetByName" method="post">
+            <dl class="dl-horizontal">
+
+
+                <dt>
+                    @Html.DisplayNameFor(model => model.Nombre)
+                </dt>
+
+                <dd>
+                    <input type="text" name="name" />
+                </dd>
+
+
+            </dl>
+
+            @using (Html.BeginForm())
+            {
+                @Html.AntiForgeryToken()
+
+                <div class="form-actions no-color">
+                    <input type="submit" value="Detalle" />
+                </div>
+            }
+        </form>
+        <hr>
+
+        <form action="~/Actividad/GetByMinAge" method="post">
+            <dl class="dl-horizontal">
+
+
+                <dt>
+                    @Html.DisplayNameFor(model => model.EdadMinima)
+                </dt>
+
+                <dd>
+                    <input type="number" name="age" />
+                </dd>
+
+
+            </dl>
+
+            @using (Html.BeginForm())
+            {
+                @Html.AntiForgeryToken()
+
+                <div class="form-actions no-color">
+                    <input type="submit" value="Detalle" />
+                </div>
+            }
+        </form>
+        <hr>
+
+        <form action="~/Actividad/GetBySchedule" method="post">
+            <dl class="dl-horizontal">
+
+
+                <dt>
+                    <label for="DayOfWeek">Dia</label>
+                </dt>
+
+                <dd>
+                    <select name="day" id="DayOfWeek">
+                        <option value="0">Lunes</option>
+                        <option value="1">Martes</option>
+                        <option value="2">Miércoles</option>
+                        <option value="3">Jueves</option>
+                        <option value="4">Viernes</option>
+                        <option value="5">Sábado</option>
+                        <option value="6">Domingo</option>
+                    </select>
+                </dd>
+
+                <dt>
+                    Hora
+                </dt>
+
+                <dd>
+                    <input type="number" name="hour" />
+                </dd>
+
+
+            </dl>
+
+            @using (Html.BeginForm())
+            {
+                @Html.AntiForgeryToken()
+
+                <div class="form-actions no-color">
+                    <input type="submit" value="Detalle" />
+                </div>
+            }
+        </form>
+        <hr>
     </div>
 </body>
 </html>
