@@ -114,7 +114,6 @@ namespace ClubDeportivo.Controllers
         }
 
         // GET: Actividad/Details/5
-        [HttpPost]
         public ActionResult Details(Actividad actividad)
         {
             return View(actividad);

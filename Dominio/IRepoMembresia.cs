@@ -14,5 +14,6 @@ namespace Dominio
 		int Alta(int idSocio, Membresia t);
         List<Membresia> ListarPorSocioId(int idSocio);
         bool ModificarFechaPagoHoy(Membresia m);
+        List<Membresia> ListarPorMesAnio(int month, int year);
     }
 }

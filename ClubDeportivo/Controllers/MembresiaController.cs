@@ -26,6 +26,36 @@ namespace ClubDeportivo.Controllers
             }
 
         }
+        //punto 6
+        [HttpGet]
+        public ActionResult GetByMonthYear()
+        {
+            if (Session["LogueadoMail"] == null && Session["Logueado"] == null)
+            {
+                return RedirectToAction("Index", "Login");
+            }
+            else
+            {
+                return View();
+            }
+
+        }
+
+        //punto 6
+        [HttpPost]
+        public ActionResult GetByMonthYear(int month, int year)
+        {
+            if (Session["LogueadoMail"] == null && Session["Logueado"] == null)
+            {
+                return RedirectToAction("Index", "Login");
+            }
+            else
+            {
+                List<Membresia> lista = f1.ListarMembresiasMesAnio(month, year);
+                return View(lista);
+            }
+
+        }
 
         public ActionResult DetalleCuponera(Cuponera cuponera)
         {

@@ -58,6 +58,15 @@ namespace Repositorios
                 return db.Membresias.ToList();
             }
         }
+
+        public List<Membresia> ListarPorMesAnio(int month, int year)
+        {
+            using (ClubContext db = new ClubContext())
+            {
+                return db.Membresias.Where(m => m.Mes == month && m.Anio == year).ToList();
+            }
+        }
+
         public List<Membresia> ListarPorSocioId(int id)
         {
             using (ClubContext db = new ClubContext())

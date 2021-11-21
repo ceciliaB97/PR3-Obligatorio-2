@@ -56,6 +56,7 @@ namespace Auxiliar
             return s.ActividadSocios.Where(e => e.Fecha >= start && e.Fecha < end).ToList();
 
         }
+
         public List<ActividadHorarioDTO> GetActividadesDia(int edadSocio)
         {
             List<ActividadHorarioDTO> result = new List<ActividadHorarioDTO>();
@@ -106,6 +107,12 @@ namespace Auxiliar
         {
             IRepoMembresia rm = FabricaRepositorios.ObtenerRepoMembresia();
             return rm.Listar();
+        }
+
+        public List<Membresia> ListarMembresiasMesAnio(int month, int year)
+        {
+            IRepoMembresia rm = FabricaRepositorios.ObtenerRepoMembresia();
+            return rm.ListarPorMesAnio(month, year);
         }
 
         public List<Membresia> ListarMembresiasPorSocioId(Socio socio)
