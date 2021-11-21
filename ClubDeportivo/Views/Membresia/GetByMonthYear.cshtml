@@ -1,66 +1,59 @@
 ﻿
-@{
-    Layout = null;
-}
 
-<!DOCTYPE html>
+<div>
+    <h4>Buscar Membresias</h4>
+    <hr />
+    <form action="~/Membresia/GetByMonthYear" method="post">
+        <dl class="dl-horizontal">
 
-<html>
-<head>
-    <meta name="viewport" content="width=device-width" />
-    <title>GetByMonthYear</title>
-</head>
-<body>
+            <dt>
+                Mes
+            </dt>
+
+            <dd>
+                <input type="number" name="month" />
+            </dd>
+
+            <dt>
+                Año
+            </dt>
+
+            <dd>
+                <input type="number" name="year" />
+            </dd>
+
+        </dl>
+
+        @using (Html.BeginForm())
+        {
+            @Html.AntiForgeryToken()
+
+            <div class="form-actions no-color">
+                <input type="submit" value="Detalle" />
+            </div>
+        }
+    </form>
+</div>
+<br />
 
 
-    <div>
-        <h4>Buscar Membresias</h4>
-        <hr />
-        <form action="~/Membresia/GetByMonthYear" method="post">
-            <dl class="dl-horizontal">
+<!--
+<p>
+    Tipo de pase (libre o cuponera)
+    Fecha de pago
+    Monto pagado
+    Monto de descuento aplicado.
+    Cédula y nombre del socio que la adquirió.
+</p>
+    -->
 
-                <dt>
-                    Mes
-                </dt>
-
-                <dd>
-                    <input type="number" name="month" />
-                </dd>
-
-                <dt>
-                    Año
-                </dt>
-
-                <dd>
-                    <input type="number" name="year" />
-                </dd>
-
-            </dl>
-
-            @using (Html.BeginForm())
-            {
-                @Html.AntiForgeryToken()
-
-                <div class="form-actions no-color">
-                    <input type="submit" value="Detalle" />
-                </div>
-            }
-        </form>
-    </div>
-    @if (ViewBag.lista != null)
-    {
-        <div>
+@*@if (ViewBag.lista != null)
+{
+    <div class="card" style="width: 18rem;">
+        <div class="card-body">
             @foreach (var membresia in ViewBag.lista)
             {
-                <!--
-                <p>
-                    Tipo de pase (libre o cuponera)
-                    Fecha de pago
-                    Monto pagado
-                    Monto de descuento aplicado.
-                    Cédula y nombre del socio que la adquirió.
-                </p>
-                    -->
+
 
                 <p><strong>Tipo de Membresia</strong> @membresia.TipoMembresia</p>
                 <p><strong>Fecha de Pago</strong> @membresia.FechaPago</p>
@@ -73,7 +66,50 @@
                 <hr />
             }
         </div>
-    }
+    </div>
+}*@
 
-</body>
-</html>
+
+@if (ViewBag.lista != null)
+{
+    <table class="table">
+        <tr>
+            <th>
+                Tipo de Membresia
+            </th>
+            <th>
+                Fecha de Pago
+            </th>
+            <th>
+                Precio
+            </th>
+            <th>
+                Socios
+            </th>
+        </tr>
+
+        @foreach (var membresia in ViewBag.lista)
+        {
+            <tr>
+                <td>
+                    @membresia.TipoMembresia
+                </td>
+                <td>
+                    @membresia.FechaPago
+                </td>
+                <td>
+                    $@membresia.Precio
+                </td>
+                <td>
+                    @foreach (var socio in membresia.Socios)
+                    {
+                        <p><strong>Cedula</strong> @socio.Cedula</p>
+                        <p><strong>Socio</strong> @socio.NombreApellido</p>
+                    }
+                </td>
+            </tr>
+        }
+
+    </table>
+
+}

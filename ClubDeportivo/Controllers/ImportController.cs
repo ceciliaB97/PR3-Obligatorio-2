@@ -25,12 +25,11 @@ namespace ClubDeportivo.Controllers
         [HttpGet]
         public ActionResult ImportarDatos()
         {
-            //@ViewBag.Message = "Import";
             return View();
         }
 
         [HttpPost]
-        public ActionResult ImportarDatos(int tipoImport)/*HttpPostedFileBase file)*/
+        public ActionResult ImportarDatos(int tipoImport)
         {
             try
             {
@@ -55,7 +54,6 @@ namespace ClubDeportivo.Controllers
                             {
                                 Usuario user = new Usuario
                                 {
-                                    //  Id = int.Parse(csvParsed[k][0]),
                                     Mail = csvParsed[k][1],
                                     Password = csvParsed[k][2]
                                 };
@@ -96,7 +94,7 @@ namespace ClubDeportivo.Controllers
 
                                 };
 
-                                string horarioSTR = csvParsed[k][6];
+                                string horarioSTR = csvParsed[k][6]; //lista de horarios en la posicion 6
 
                                 string[] listaHorariosSTR = horarioSTR.Split(new char[] { ',' }, StringSplitOptions.RemoveEmptyEntries);
 
