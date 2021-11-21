@@ -1,166 +1,18 @@
 ﻿@model Dominio.Actividad
 
 @{
-    ViewBag.Title = "GetBy";
+    Layout = null;
 }
 
-<h2>Buscar Por Cedula</h2>
+<!DOCTYPE html>
 
-<div>
-    <h4>Actividad</h4>
-    <hr />
-    <form action="~/Actividad/GetByName" method="post">
-        <dl class="dl-horizontal">
-
-
-            <dt>
-                @Html.DisplayNameFor(model => model.Nombre)
-            </dt>
-
-            <dd>
-                <input type="text" name="name" />
-            </dd>
-
-
-        </dl>
-
-        @using (Html.BeginForm())
-        {
-            @Html.AntiForgeryToken()
-
-            <div class="form-actions no-color">
-                <input type="submit" value="Detalle" />
-            </div>
-        }
-    </form>
-
-    <form action="~/Actividad/GetByMinAge" method="post">
-        <dl class="dl-horizontal">
-
-
-            <dt>
-                @Html.DisplayNameFor(model => model.EdadMinima)
-            </dt>
-
-            <dd>
-                <input type="number" name="age" />
-            </dd>
-
-
-        </dl>
-
-        @using (Html.BeginForm())
-        {
-            @Html.AntiForgeryToken()
-
-            <div class="form-actions no-color">
-                <input type="submit" value="Detalle" />
-            </div>
-        }
-    </form>
-
-    <form action="~/Actividad/GetBySchedule" method="post">
-        <dl class="dl-horizontal">
-
-
-            <dt>
-                <label for="DayOfWeek">Dia</label>
-            </dt>
-
-            <dd>
-                <select name="day" id="DayOfWeek">
-                    <option value="0">Lunes</option>
-                    <option value="1">Martes</option>
-                    <option value="2">Miércoles</option>
-                    <option value="3">Jueves</option>
-                    <option value="4">Viernes</option>
-                    <option value="5">Sábado</option>
-                    <option value="6">Domingo</option>
-                </select>
-            </dd>
-
-            <dt>
-                Hora
-            </dt>
-
-            <dd>
-                <input type="number" name="hour" />
-            </dd>
-
-
-        </dl>
-
-        @using (Html.BeginForm())
-        {
-            @Html.AntiForgeryToken()
-
-            <div class="form-actions no-color">
-                <input type="submit" value="Detalle" />
-            </div>
-        }
-    </form>
-</div>
-
-@if (Model != null)
-{
-    <h2>Detalle</h2>
-
-    <div>
-        <h4>Socio</h4>
-        <hr />
-        <form action="~/Actividad/Details" method="post">
-            <dl class="dl-horizontal">
-                <dt>
-                    @Html.DisplayNameFor(model => model.Id)
-                </dt>
-
-                <dd>
-                    @Html.DisplayFor(model => model.Id)
-                </dd>
-
-                <dt>
-                    @Html.DisplayNameFor(model => model.Nombre)
-                </dt>
-
-                <dd>
-                    @Html.DisplayFor(model => model.Nombre)
-                </dd>
-
-                <dt>
-                    @Html.DisplayNameFor(model => model.EdadMinima)
-                </dt>
-
-                <dd>
-                    @Html.DisplayFor(model => model.EdadMinima)
-                </dd>
-
-                <dt>
-                    @Html.DisplayNameFor(model => model.EdadMaxima)
-                </dt>
-
-                <dd>
-                    @Html.DisplayFor(model => model.EdadMaxima)
-                </dd>
-
-                <dt>
-                    @Html.DisplayNameFor(model => model.Cupos)
-                </dt>
-
-                <dd>
-                    @Html.DisplayFor(model => model.Cupos)
-                </dd>
-
-                <dt>
-                    @Html.DisplayNameFor(model => model.Active)
-                </dt>
-
-                <dd>
-                    @Html.DisplayFor(model => model.Active)
-                </dd>
-
-            </dl>
-        </form>
-    
-
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>GetBy</title>
+</head>
+<body>
+    <div> 
     </div>
-}
+</body>
+</html>

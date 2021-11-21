@@ -1,0 +1,66 @@
+﻿@model Dominio.Actividad
+
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Details</title>
+</head>
+<body>
+    <div>
+        <h4>Actividad</h4>
+        <hr />
+        <dl class="dl-horizontal">
+
+            <dt>
+                @Html.DisplayNameFor(model => model.Nombre)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Nombre)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.EdadMinima)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.EdadMinima)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.EdadMaxima)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.EdadMaxima)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.Cupos)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Cupos)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.Active)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Active)
+            </dd>
+
+        </dl>
+    </div>
+    <p>
+        @Html.ActionLink("Back to Search", "GetBy")
+    </p>
+</body>
+</html>

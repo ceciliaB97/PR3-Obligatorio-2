@@ -23,6 +23,11 @@ namespace ClubDeportivo.Controllers
             return View();
         }
 
+        public ActionResult GetBy()
+        {
+            return View();
+        }
+
         // GET: Actividad/GetByName/{name}
         public ActionResult GetByName(String name)
         {
