@@ -1,19 +1,13 @@
-﻿using System;
+﻿using Dominio;
+using System;
 using System.Collections.Generic;
 using System.Data;
-using System.Data.SqlClient;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Dominio;
 
 namespace Repositorios
 {
-    public class RepoSocios : IRepoSocios
+	public class RepoSocios : IRepoSocios
     {
-        //TODO
-        //public IngresosFechaData
-
         public int IngresarActividadSocio(int idSocio, Actividad actividad, DateTime dateTime)
         {
             using (ClubContext db = new ClubContext())

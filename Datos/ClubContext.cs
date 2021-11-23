@@ -28,14 +28,5 @@ namespace Repositorios
 
         }
 
-
-        //protected override void OnModelCreating(DbModelBuilder modelBuilder)
-        //{
-        //    modelBuilder.Entity<Horario>()
-        //    .HasIndex(p => new { p.DiaSemana, p.Hora,p.Actividad }).IsUnique();
-
-        //    modelBuilder.Entity<ActividadSocio>()
-        //        .HasIndex(p => new { p.Actividad, p.Socio, p.Fecha }).IsUnique();
-        //}
     }
 }

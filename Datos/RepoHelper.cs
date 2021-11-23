@@ -39,6 +39,8 @@ namespace Repositorios
 				using (ClubContext context = new ClubContext())
 				{
 					//prueba precarga datos
+
+					//TODO , completar esto
 					var h = new Horario
 					{
 						DiaSemana = DayOfWeek.Monday,

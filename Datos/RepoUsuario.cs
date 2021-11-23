@@ -1,15 +1,10 @@
-﻿using System;
+﻿using Dominio;
 using System.Collections.Generic;
-using System.Data;
-using System.Data.SqlClient;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Dominio;
 
 namespace Repositorios
 {
-    public class RepoUsuario : IRepoUsuario
+	public class RepoUsuario : IRepoUsuario
     {
         public void Precarga()
         {
@@ -26,25 +21,13 @@ namespace Repositorios
             {
                 foreach (var item in lu)
                 {
-                    //bool existe = buscarLogin(item.Mail, item.Password);
-
-                    /*if (!existe)
-                    {*/
-                    //  Alta(item);
-                    //}
-                    
-                    //tal vez lo hace de una forma directa sin tener que llamar al otro método
-                    //con el contexto creado localmente en este método, será más eficiente esto, que llamar al método?
                     if (context.Usuarios.SingleOrDefault(e => e.Mail == item.Mail && e.Password == item.Password) == null)
                     {
                         context.Usuarios.Add(item);
                     }
 
                 }
-
-				
-
-				int filasAfectadas = context.SaveChanges();
+				context.SaveChanges();
             }
         }
 
@@ -67,9 +50,6 @@ namespace Repositorios
             Usuario u = null;
             using (ClubContext db = new ClubContext())
             {
-                //string passEncriptada = CryptoUtils.Crypto.Encrypt(password);
-                //var usuarios = db.Usuarios.ToList();
-
                 //get the single user who matches the mail and password, or return null
                 //si single or default estuviera al final, agarra lo que haya y lo devuelve luego de hacer el filtro
                 //solo si es 1 elemento único en la lista
