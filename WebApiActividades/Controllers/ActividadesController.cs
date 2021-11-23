@@ -57,11 +57,12 @@ namespace WebApiActividades.Controllers
             var actvidades = db.Actividades.Where(c => c.Nombre.ToLower().Contains(texto.ToLower()))
                 .OrderBy(a => a.Nombre).ToList();
 
+
+
             foreach (var a in actvidades)
             {
                 a.ActividadHorarios = a.ActividadHorarios.OrderBy(h => h.DiaSemana)
-                .ThenBy(h => h.Hora).ToList();
-
+                .ThenBy(h => h.Hora).ToList();                
             }
 
             var actResult = actvidades;

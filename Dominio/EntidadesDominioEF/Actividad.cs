@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
@@ -25,6 +26,7 @@ namespace Dominio
 
         public virtual List<Horario> ActividadHorarios { get; set; }
 
+        [JsonIgnore]
         public virtual Membresia Membresia { get; set; }
 
         public static bool ValidarFechaHora (DateTime fechaHora)

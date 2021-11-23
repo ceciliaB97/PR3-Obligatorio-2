@@ -109,7 +109,9 @@ namespace ClubDeportivo.Controllers
                 Task<string> tarea2 = tarea1.Result.Content.ReadAsStringAsync();
                 tarea2.Wait();
                 string json = tarea2.Result;
+
                 actividades = JsonConvert.DeserializeObject<List<Actividad>>(json);
+
             }
             else
             {
